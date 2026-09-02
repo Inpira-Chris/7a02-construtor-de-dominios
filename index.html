@@ -2,128 +2,174 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Construtor de Domínios — 7º Ano · 3º Bimestre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Máquina de Paisagem — 7º Ano · 3º Bimestre</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --blue:#4A90D9;--pink:#E84393;
-  --txt:#1a1a1a;--txt2:#555;--txt3:#888;
-  --bg:#f4f4f0;--card:#fff;--card2:#f0f0eb;
-  --border:rgba(0,0,0,0.12);--border2:rgba(0,0,0,0.22);
-  --info-bg:#e8f0fb;--info-txt:#1a4fa0;
-  --ok-bg:#dcfce7;--ok-txt:#15803d;--ok-border:#22c55e;
-  --err-bg:#fee2e2;--err-txt:#b91c1c;--err-border:#ef4444;
-  --warn-bg:#fef9c3;--warn-txt:#854d0e;--warn-border:#eab308;
-  --r:10px;--r2:14px;
-}
-@media(prefers-color-scheme:dark){:root{
-  --txt:#f0f0f0;--txt2:#aaa;--txt3:#777;
-  --bg:#18181b;--card:#27272a;--card2:#323236;
-  --border:rgba(255,255,255,0.1);--border2:rgba(255,255,255,0.22);
-  --info-bg:#1a2f50;--info-txt:#7eb3f5;
-  --ok-bg:#14321e;--ok-txt:#4ade80;
-  --err-bg:#3b1212;--err-txt:#f87171;
-  --warn-bg:#2d2000;--warn-txt:#fbbf24;
-}}
+button,[onclick]{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+:root{--blue:#4A90D9;--txt:#1a1a1a;--txt2:#555;--txt3:#888;--bg:#f4f4f0;--card:#fff;--card2:#f0f0eb;
+--border:rgba(0,0,0,0.12);--border2:rgba(0,0,0,0.22);--info-bg:#e8f0fb;--info-txt:#1a4fa0;
+--ok-bg:#dcfce7;--ok-txt:#15803d;--ok-border:#22c55e;--err-bg:#fee2e2;--err-txt:#b91c1c;--err-border:#ef4444;
+--warn-bg:#fef9c3;--warn-txt:#854d0e;--warn-border:#eab308;--r:10px;--r2:14px}
+@media(prefers-color-scheme:dark){:root{--txt:#f0f0f0;--txt2:#aaa;--txt3:#777;--bg:#18181b;--card:#27272a;--card2:#323236;
+--border:rgba(255,255,255,0.1);--border2:rgba(255,255,255,0.22);--info-bg:#1a2f50;--info-txt:#7eb3f5;
+--ok-bg:#14321e;--ok-txt:#4ade80;--err-bg:#3b1212;--err-txt:#f87171;--warn-bg:#2d2000;--warn-txt:#fbbf24}}
 body{font-family:'Segoe UI',Inter,Arial,sans-serif;background:var(--bg);color:var(--txt);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
-.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem;flex:1}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem;flex:1;width:100%}
 .site-header{background:var(--card);border-bottom:0.5px solid var(--border);padding:1rem 1.25rem;text-align:center}
-.site-header h1{font-size:22px;font-weight:600;color:var(--txt)}
+.site-header h1{font-size:22px;font-weight:600}
 .site-header p{font-size:14px;color:var(--txt2);margin-top:3px}
 .nav{display:flex;gap:8px;margin-bottom:1.75rem;flex-wrap:wrap;justify-content:center}
-.nav-btn{padding:10px 22px;border:1px solid var(--border2);border-radius:22px;background:transparent;cursor:pointer;font-size:15px;color:var(--txt2);transition:all .2s;font-family:inherit}
+.nav-btn{padding:10px 22px;min-height:44px;border:1px solid var(--border2);border-radius:22px;background:transparent;cursor:pointer;font-size:15px;color:var(--txt2);transition:.2s;font-family:inherit}
 .nav-btn.active{background:var(--info-bg);color:var(--info-txt);border-color:transparent;font-weight:600}
-.nav-btn:hover:not(.active){background:var(--card)}
 .section{display:none}.section.active{display:block}
-h2{font-size:20px;font-weight:600;color:var(--txt);margin-bottom:1.1rem}
-h3{font-size:17px;font-weight:600;color:var(--txt);margin-bottom:.6rem;margin-top:1.4rem}
+h2{font-size:20px;font-weight:600;margin-bottom:1.1rem}
+h3{font-size:17px;font-weight:600;margin:1.4rem 0 .6rem}
 p{font-size:15px;color:var(--txt2);line-height:1.7}
 .card{background:var(--card);border:0.5px solid var(--border);border-radius:var(--r2);padding:1.5rem;margin-bottom:1.25rem}
 .card-sm{background:var(--card2);border:0.5px solid var(--border);border-radius:var(--r);padding:1.1rem;margin-bottom:1rem}
-.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:1.1rem 0}
-@media(min-width:560px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
-.cat-box{border-radius:var(--r);padding:14px 10px;text-align:center;border:1px solid var(--border)}
-.cat-icon{font-size:28px;display:block;margin-bottom:6px}
-.cat-name{font-size:13px;font-weight:700}
-.cat-desc{font-size:11.5px;color:var(--txt2);margin-top:4px;line-height:1.45}
 .steps{display:flex;flex-direction:column;gap:12px;margin-top:.9rem}
 .step{display:flex;gap:12px;align-items:flex-start}
-.step-n{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.step-n{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0}
 .step-txt{font-size:15px;color:var(--txt2);line-height:1.6;padding-top:3px}
 .q-progress{display:flex;gap:6px;margin-bottom:1.25rem;flex-wrap:wrap}
 .q-dot{width:14px;height:14px;border-radius:50%;background:var(--border2);transition:.3s}
 .q-dot.cur{background:var(--blue)}.q-dot.ok{background:var(--ok-border)}.q-dot.err{background:var(--err-border)}
-.q-text{font-size:16px;color:var(--txt);line-height:1.65;margin-bottom:1.1rem;font-weight:500}
+.q-text{font-size:16px;line-height:1.65;margin-bottom:1.1rem;font-weight:500}
 .q-opts{display:grid;gap:9px}
-.q-opt{padding:12px 16px;border:1px solid var(--border2);border-radius:var(--r);cursor:pointer;font-size:15px;color:var(--txt2);background:var(--card);text-align:left;transition:.2s;font-family:inherit;line-height:1.5}
+.q-opt{padding:12px 16px;min-height:48px;border:1px solid var(--border2);border-radius:var(--r);cursor:pointer;font-size:15px;color:var(--txt2);background:var(--card);text-align:left;transition:.2s;font-family:inherit;line-height:1.5}
 .q-opt:hover{background:var(--card2);color:var(--txt)}
 .q-opt.ok{background:var(--ok-bg);border-color:var(--ok-border);color:var(--ok-txt)}
 .q-opt.err{background:var(--err-bg);border-color:var(--err-border);color:var(--err-txt)}
 .q-opt.dis{cursor:default;pointer-events:none}
 .q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem}
-.btn{padding:10px 20px;border:1px solid var(--border2);border-radius:var(--r);background:transparent;cursor:pointer;font-size:15px;color:var(--txt2);transition:.2s;font-family:inherit}
+.btn{padding:11px 20px;min-height:48px;border:1px solid var(--border2);border-radius:var(--r);background:transparent;cursor:pointer;font-size:15px;color:var(--txt2);transition:.2s;font-family:inherit}
 .btn:hover{background:var(--card2);color:var(--txt)}
-.btn:disabled{opacity:.38;cursor:default}
 .btn-p{background:var(--info-bg);border-color:transparent;color:var(--info-txt);font-weight:600}
-.btn-p:hover{opacity:.88}
 .q-ctr{font-size:14px;color:var(--txt3)}
 .score-box{text-align:center;padding:3rem 1rem;background:var(--card);border-radius:var(--r2);border:0.5px solid var(--border);display:none}
-.score-n{font-size:56px;font-weight:700;color:var(--txt)}
+.score-n{font-size:56px;font-weight:700}
 .score-s{font-size:15px;color:var(--txt2);margin-top:.5rem}
 .balloon-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:1.25rem;z-index:999}
 .balloon-overlay.show{display:flex}
-.balloon-box{background:var(--card);border-radius:var(--r2);padding:1.75rem 1.5rem;max-width:420px;width:100%;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.25);border-top:5px solid var(--ok-border);animation:balloonPop .25s ease}
+.balloon-box{background:var(--card);border-radius:var(--r2);padding:1.75rem 1.5rem;max-width:430px;width:100%;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.25);border-top:5px solid var(--ok-border);animation:pop .25s ease}
 .balloon-overlay.err .balloon-box{border-top-color:var(--err-border)}
-@keyframes balloonPop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
 .balloon-emoji{font-size:42px;margin-bottom:.5rem}
-.balloon-title{font-size:18px;font-weight:700;color:var(--txt);margin-bottom:.6rem}
-.balloon-msg{font-size:15px;color:var(--txt2);line-height:1.65;margin-bottom:1.4rem}
+.balloon-title{font-size:18px;font-weight:700;margin-bottom:.6rem}
+.balloon-msg{font-size:14.5px;color:var(--txt2);line-height:1.7;margin-bottom:1.4rem;text-align:left}
 .balloon-btn{width:100%;padding:13px;font-size:15px}
-footer{background:var(--card);border-top:0.5px solid var(--border);padding:1.1rem 1.25rem;text-align:center;margin-top:auto}
+footer{background:var(--card);border-top:0.5px solid var(--border);padding:1.1rem 1.25rem calc(1.1rem + env(safe-area-inset-bottom));text-align:center;margin-top:auto}
 footer p{font-size:14px;color:var(--txt2)}
 footer a{color:var(--info-txt);text-decoration:none;font-weight:600}
-footer a:hover{text-decoration:underline}
-/* PRÁTICA — Construtor de Domínios */
-.bd-wrap{max-width:640px;margin:0 auto}
-.bd-instructions{background:var(--info-bg);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;font-size:13.5px;color:var(--info-txt);line-height:1.6;margin-bottom:1rem}
-.bd-hud{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
-.bd-chip{background:var(--card2);border:1px solid var(--border);color:var(--txt2);font-size:12.5px;font-weight:700;padding:7px 14px;border-radius:20px}
-.bd-banner{display:flex;align-items:center;gap:12px;background:var(--card);border:0.5px solid var(--border);border-radius:var(--r2);padding:1rem 1.25rem;margin-bottom:1rem}
-.bd-banner-icon{font-size:34px}
-.bd-banner-title{font-size:17px;font-weight:700;color:var(--txt)}
-.bd-banner-sub{font-size:12.5px;color:var(--txt3);margin-top:2px}
-.bd-cat{background:var(--card);border:0.5px solid var(--border);border-radius:var(--r2);padding:1rem 1.1rem;margin-bottom:.85rem}
-.bd-cat-label{font-size:13px;font-weight:800;color:var(--info-txt);text-transform:uppercase;letter-spacing:.03em;margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
-.bd-cat.filled .bd-cat-label{color:var(--ok-txt)}
-.bd-opts{display:flex;flex-direction:column;gap:7px}
-.bd-opt{padding:10px 14px;border:1.5px solid var(--border2);border-radius:var(--r);background:var(--card2);color:var(--txt2);font-size:13.5px;text-align:left;cursor:pointer;font-family:inherit;line-height:1.5;transition:.15s;touch-action:manipulation}
-button,.q-opt,.bd-opt{-webkit-tap-highlight-color:transparent}
-.bd-opt:hover{background:var(--info-bg);color:var(--info-txt)}
-.bd-opt.correct{background:var(--ok-bg);border-color:var(--ok-border);color:var(--ok-txt);font-weight:600;cursor:default;pointer-events:none}
-.bd-opt.wrong-flash{background:var(--err-bg);border-color:var(--err-border);color:var(--err-txt)}
-.bd-legend{display:flex;flex-direction:column;gap:6px;margin-top:1rem}
-.bd-legend-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--txt2);background:var(--card2);border-radius:8px;padding:7px 10px}
-.bd-legend-row.done{color:var(--ok-txt);background:var(--ok-bg)}
-.bd-report{text-align:center;padding:1.75rem 1rem;background:var(--card);border-radius:var(--r2);border:0.5px solid var(--border)}
-.score-line{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--txt2);background:var(--card2);border-radius:8px;padding:8px 12px}
-.score-line.total{color:var(--ok-txt);background:var(--ok-bg);font-size:14px}
-.score-line .sv{margin-left:auto;font-weight:800}
-</style>
+/* menu de fases */
+.fs-menu{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:1rem}
+@media(min-width:600px){.fs-menu{grid-template-columns:1fr 1fr}}
+.fs-card{position:relative;text-align:left;padding:1.15rem 1.2rem;border-radius:var(--r2);border:1.5px solid var(--border2);background:var(--card);cursor:pointer;font-family:inherit;transition:.2s;min-height:150px;display:flex;flex-direction:column}
+.fs-card:hover:not(:disabled){border-color:var(--blue);transform:translateY(-3px);box-shadow:0 8px 22px rgba(74,144,217,.18)}
+.fs-card:active:not(:disabled){transform:scale(.98)}
+.fs-card:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.fs-card:disabled{cursor:default;border-color:var(--ok-border);background:linear-gradient(160deg,var(--ok-bg),var(--card))}
+.fs-card-e{font-size:32px;line-height:1;margin-bottom:.5rem}
+.fs-card-n{font-size:16px;font-weight:800;color:var(--txt);margin-bottom:.25rem}
+.fs-card-d{font-size:13px;color:var(--txt2);line-height:1.55;flex:1}
+.fs-card-f{margin-top:.7rem;font-size:12px;font-weight:800;color:var(--info-txt)}
+.fs-card:disabled .fs-card-f{color:var(--ok-txt)}
+.fs-selo{position:absolute;top:10px;right:10px;background:var(--ok-border);color:#fff;font-size:10.5px;font-weight:900;padding:3px 9px;border-radius:20px}
+.fs-aviso{background:var(--info-bg);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px;font-size:13px;color:var(--info-txt);line-height:1.55;margin-bottom:1rem;text-align:center}
+/* ══════════ PRÁTICA — "MÁQUINA DE PAISAGEM" ══════════ */
+.mp-wrap{max-width:720px;margin:0 auto}
+.mp-hud{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:.9rem}
+.mp-chip{background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:12.5px;font-weight:700;color:var(--txt2)}
+.mp-chip b{color:var(--txt)}
+.mp-ask{background:linear-gradient(135deg,#2d4a2b,#3f6b3a);border-radius:var(--r2);padding:13px 16px;margin-bottom:.9rem;color:#eaf6e8;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.mp-ask-l{display:block;font-size:10.5px;font-weight:900;letter-spacing:.14em;color:#a8dda0;margin-bottom:5px}
+.mp-ask-q{display:block;font-size:15px;font-weight:600;line-height:1.6}
+.mp-tela{background:#000;border-radius:var(--r2);padding:9px;border:1px solid var(--border);margin-bottom:.9rem;box-shadow:inset 0 0 26px rgba(0,0,0,.55)}
+.mp-cena{display:block;width:100%;height:auto;border-radius:7px;overflow:hidden}
+.mp-veredito{text-align:center;font-size:12.5px;font-weight:800;letter-spacing:.06em;color:#9fd4ff;padding:7px 4px 2px;font-variant-numeric:tabular-nums}
+.mp-camada{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:10px 11px;margin-bottom:9px}
+.mp-cam-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.mp-cam-t{font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--txt3)}
+.mp-cam-v{font-size:12.5px;font-weight:800;color:var(--info-txt);text-align:right}
+.mp-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+@media(min-width:560px){.mp-opts{grid-template-columns:repeat(6,1fr)}}
+.mp-opt{border:1.5px solid var(--border2);border-radius:9px;background:var(--card2);padding:4px 3px 5px;cursor:pointer;font-family:inherit;transition:.15s;display:flex;flex-direction:column;gap:3px;min-height:74px}
+.mp-opt:hover:not(:disabled){border-color:var(--blue);transform:translateY(-2px)}
+.mp-opt:active:not(:disabled){transform:scale(.96)}
+.mp-opt:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.mp-opt.sel{border-color:#e8a020;border-width:2.5px;background:var(--warn-bg)}
+.mp-opt:disabled{cursor:default;opacity:.65}
+.mp-opt.certa{border-color:var(--ok-border);border-width:2.5px;background:var(--ok-bg)}
+.mp-opt.errada{border-color:var(--err-border);border-width:2.5px;background:var(--err-bg)}
+.mp-opt svg{display:block;width:100%;height:auto;border-radius:5px}
+.mp-opt span{font-size:9.5px;line-height:1.25;color:var(--txt2);font-weight:700;text-align:center;padding:0 2px}
+.mp-opt.sel span{color:var(--warn-txt)}
+.mp-conf{width:100%;margin-top:6px;padding:14px;font-size:15.5px;font-weight:800;border-radius:var(--r);border:none;background:linear-gradient(135deg,#e8a020,#d97706);color:#231400;cursor:pointer;font-family:inherit;min-height:52px}
+.mp-conf:hover:not(:disabled){filter:brightness(1.08)}
+.mp-conf:disabled{opacity:.35;cursor:default;filter:none}
+.mp-fb{margin-top:1rem;border-radius:var(--r2);padding:1.1rem 1.2rem;border:1.5px solid;animation:pop .22s ease}
+.mp-fb.ok{background:var(--ok-bg);border-color:var(--ok-border)}
+.mp-fb.err{background:var(--err-bg);border-color:var(--err-border)}
+.mp-fb-t{font-size:16px;font-weight:900;margin-bottom:.5rem}
+.mp-fb.ok .mp-fb-t{color:var(--ok-txt)}.mp-fb.err .mp-fb-t{color:var(--err-txt)}
+.mp-fb-l{font-size:14px;color:var(--txt2);line-height:1.65;margin-bottom:.5rem}
+.mp-fb-l b{color:var(--txt)}
+.mp-linha{display:flex;gap:8px;align-items:baseline;font-size:13px;color:var(--txt2);padding:3px 0;border-bottom:1px dashed var(--border)}
+.mp-linha:last-of-type{border-bottom:none}
+.mp-linha i{font-style:normal;width:16px;flex-shrink:0}
+.mp-linha b{color:var(--txt)}
+.mp-fb-btn{width:100%;margin-top:.8rem;padding:13px;font-size:15px;font-weight:800;border:none;border-radius:var(--r);background:var(--blue);color:#fff;cursor:pointer;font-family:inherit;min-height:50px;animation:pulseBtn 1.5s ease-in-out infinite}
+@keyframes pulseBtn{0%,100%{box-shadow:0 0 0 0 rgba(74,144,217,.5)}50%{box-shadow:0 0 0 9px rgba(74,144,217,0)}}
+@media(prefers-reduced-motion:reduce){.mp-fb-btn{animation:none}.mp-fb{animation:none}.mp-opt{transition:none}}
+.mp-rel{text-align:center;padding:2rem 1.2rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r2)}
+.mp-rel-n{font-size:46px;font-weight:900;color:var(--blue);line-height:1}
+
+    /* ══════ CABEÇALHO PEDAGÓGICO DA AULA (padrão para todas as atividades) ══════ */
+    .aula-cab{background:linear-gradient(135deg,#1f4a34,#2f6b4a);border-radius:var(--r2);padding:16px 18px;margin-bottom:1.1rem;color:#eef7f1;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+    .aula-cab-n{display:inline-block;background:rgba(255,255,255,.20);border-radius:20px;padding:4px 13px;font-size:11px;font-weight:900;letter-spacing:.13em;margin-bottom:9px}
+    .aula-cab-t{display:block;font-size:20px;font-weight:900;line-height:1.3;margin-bottom:4px}
+    .aula-cab-s{display:block;font-size:13px;color:#bfe0cd;font-weight:600;line-height:1.5}
+    .aula-obj{background:rgba(255,255,255,.13);border-left:4px solid #8fd6ad;border-radius:9px;padding:12px 14px;margin-top:12px}
+    .aula-obj-t{display:block;font-size:11px;font-weight:900;letter-spacing:.11em;color:#a9e2c2;margin-bottom:6px}
+    .aula-obj p{margin:0 0 7px;font-size:13.8px;line-height:1.65;color:#eef7f1}
+    .aula-obj p:last-child{margin-bottom:0}
+    .aula-obj b{color:#fff}
+    .aula-ficha{display:grid;grid-template-columns:1fr;gap:7px;margin-top:12px}
+    @media(min-width:640px){.aula-ficha{grid-template-columns:1fr 1fr}}
+    .aula-ficha-l{background:rgba(0,0,0,.16);border-radius:8px;padding:9px 11px}
+    .aula-ficha-l i{display:block;font-style:normal;font-size:10px;font-weight:900;letter-spacing:.1em;color:#9fd8ba;margin-bottom:3px}
+    .aula-ficha-l span{display:block;font-size:12.3px;line-height:1.5;color:#e6f4ec}
+    .aula-ficha-l.larga{grid-column:1/-1}
+    @media(prefers-reduced-motion:reduce){.aula-cab{transition:none}}
+
+    /* ══════ BARRA DE ÁUDIO (AUDIOLIVRO) ══════ */
+    .farme-audio{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--card2);border:0.5px solid var(--border);border-radius:var(--r2);padding:.75rem 1rem;margin-bottom:1.1rem}
+    .farme-audio-play{padding:11px 18px;border:0;border-radius:24px;background:#eef7f1;color:#1f4a34;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 1px 0 rgba(0,0,0,.15) inset,0 2px 6px rgba(0,0,0,.12);transition:.15s;font-family:inherit}
+    .farme-audio-play:hover{transform:translateY(-1px)}
+    .farme-audio-play.pulsa{animation:farmePulsa 1.8s ease-in-out infinite}
+    @keyframes farmePulsa{0%,100%{box-shadow:0 1px 0 rgba(0,0,0,.15) inset,0 2px 6px rgba(0,0,0,.12),0 0 0 0 rgba(34,197,94,.45)}50%{box-shadow:0 1px 0 rgba(0,0,0,.15) inset,0 2px 6px rgba(0,0,0,.12),0 0 0 8px rgba(34,197,94,0)}}
+    .farme-audio-sec{padding:9px 14px;border:1px solid var(--border2);border-radius:20px;background:transparent;color:var(--txt2);font-size:13px;cursor:pointer;font-family:inherit;transition:.15s}
+    .farme-audio-sec:hover{background:var(--card)}
+    .farme-audio-onda{display:none;align-items:center;gap:3px;height:18px}
+    .farme-audio-onda span{width:3px;background:var(--info-txt);border-radius:2px;animation:farmeOnda 1s ease-in-out infinite}
+    .farme-audio-onda span:nth-child(2){animation-delay:.2s}
+    .farme-audio-onda span:nth-child(3){animation-delay:.4s}
+    @keyframes farmeOnda{0%,100%{height:5px}50%{height:18px}}
+    .farme-audio-status{font-size:12.5px;color:var(--txt3)}
+    .farme-audio-vozwrap{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--txt2)}
+    .farme-audio-vozwrap select{font-size:12.5px;padding:5px 8px;border-radius:8px;border:1px solid var(--border2);background:var(--card);color:var(--txt);font-family:inherit;max-width:180px}
+    @media(prefers-reduced-motion:reduce){.farme-audio-play.pulsa{animation:none}.farme-audio-onda span{animation:none}}
+  </style>
 </head>
 <body>
 
 <header class="site-header">
-  <div style="display:flex;align-items:center;justify-content:center;gap:12px">
-    <h1>🧩 Construtor de Domínios</h1>
-  </div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:12px"><h1>🏞️ Máquina de Paisagem</h1></div>
   <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:4px">
     <p style="margin:0">Geografia — 7º Ano &nbsp;|&nbsp; 3º Bimestre &nbsp;|&nbsp; Aulas 3 a 4</p>
-    <button id="sfx-btn" onclick="toggleSfx()" title="Ativar/desativar sons"
-      style="background:var(--info-bg);border:1px solid var(--border);cursor:pointer;
-             width:30px;height:30px;border-radius:50%;display:flex;align-items:center;
-             justify-content:center;font-size:14px;color:var(--info-txt);flex-shrink:0;
-             transition:.2s">🔊</button>
+    <button id="sfx-btn" onclick="toggleSfx()" title="Ativar/desativar sons" aria-label="Ativar ou desativar sons"
+      style="background:var(--info-bg);border:1px solid var(--border);cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--info-txt);flex-shrink:0">🔊</button>
   </div>
 </header>
 
@@ -131,82 +177,86 @@ button,.q-opt,.bd-opt{-webkit-tap-highlight-color:transparent}
   <div class="nav">
     <button class="nav-btn active" onclick="show('tutorial')">📖 Tutorial</button>
     <button class="nav-btn" onclick="show('quiz')">🧠 Quiz</button>
-    <button class="nav-btn" onclick="show('pratica')">🧩 Prática</button>
+    <button class="nav-btn" onclick="show('pratica')">🏞️ Prática</button>
   </div>
 
-  <!-- ══════════════════════ TUTORIAL ══════════════════════ -->
   <div id="tutorial" class="section active">
-    <h2>Domínios morfoclimáticos: quando clima, relevo, solo e vegetação se encontram</h2>
+    <div class="aula-cab">
+      <span class="aula-cab-n">GEOGRAFIA · 7º ANO · 3º BIMESTRE · AULAS 3 E 4</span>
+      <span class="aula-cab-t">Domínios morfoclimáticos do Brasil: relevo e clima</span>
+      <span class="aula-cab-s">Do conceito de domínio morfoclimático à interação entre relevo e clima na formação dos domínios brasileiros.</span>
 
+      <div class="aula-obj">
+        <span class="aula-obj-t">🎯 O QUE VAMOS APRENDER NESTA AULA</span>
+        <p><b>Objetivo:</b> diferenciar domínios morfoclimáticos de biomas, identificando os domínios do Brasil, e relacionar relevo e clima às características de cada um.</p>
+        <p><b>Conceito abordado:</b> <b>Domínio morfoclimático</b> é uma grande área do território em que clima, relevo, vegetação, solo e hidrografia funcionam de forma integrada, formando uma paisagem com identidade própria — diferente de bioma, que descreve apenas a comunidade vegetal e animal predominante. Nesta dupla de aulas, o foco está em como o relevo (altitude, formas do terreno) e o clima (temperatura, regime de chuvas) atuam juntos para esculpir cada domínio brasileiro.</p>
+      </div>
+
+      <div class="aula-ficha">
+        <div class="aula-ficha-l larga"><i>HABILIDADE</i><span><b>EF07GE11</b> — Caracterizar dinâmicas dos componentes físico-naturais no território nacional, bem como sua distribuição e biodiversidade (Florestas Tropicais, Cerrados, Caatingas, Campos Sulinos e Matas de Araucária). <em style="opacity:.8">Na aula 3, combinada com EF07GE09A — leitura de mapas temáticos dos domínios, habilidade complementar do Currículo Paulista.</em></span></div>
+        <div class="aula-ficha-l larga"><i>APRENDIZAGEM ESSENCIAL</i><span><b>AE7</b> — Diferenciar os domínios morfoclimáticos brasileiros, com base na interação entre relevo, clima, vegetação e hidrografia, destacando suas características, diferenças e desafios ambientais. <em style="opacity:.8">(Aulas 3 a 10)</em></span></div>
+        <div class="aula-ficha-l"><i>CONTEÚDO DAS AULAS 3 E 4</i><span>Aula 3 — Domínios morfoclimáticos do Brasil. Aula 4 — Relevo e clima nos domínios do Brasil: interação entre relevo e clima na formação dos domínios morfoclimáticos.</span></div>
+        <div class="aula-ficha-l"><i>OBJETIVOS DA APRENDIZAGEM</i><span>Aula 3 — Diferenciar domínios morfoclimáticos e biomas; identificar os domínios morfoclimáticos do Brasil. Aula 4 — Relacionar relevo e clima às características dos domínios morfoclimáticos no Brasil.</span></div>
+        <div class="aula-ficha-l"><i>COMPETÊNCIA SOCIOEMOCIONAL</i><span>Organização, foco e responsabilidade.</span></div>
+        <div class="aula-ficha-l"><i>PLANO DE AULA</i><span>3º Bimestre — PEI 2026 · Prof. Me. Christopher De Andrade Cardoso · EE Prefeito Edison Bastos Gasparini</span></div>
+      </div>
+    </div>
+
+    <div class="farme-audio" id="farmeAudio">
+      <button class="farme-audio-play pulsa" id="btnLer" onclick="FarmeKit.lerTutorial()">🔊 Clique aqui para ouvir o texto</button>
+      <button class="farme-audio-sec" id="btnPausar" style="display:none" onclick="FarmeKit.pausarTutorial()">⏸️ Pausar</button>
+      <button class="farme-audio-sec" id="btnParar" style="display:none" onclick="FarmeKit.pararTutorial()">⏹️ Parar</button>
+      <span class="farme-audio-onda" id="audioOnda"><span></span><span></span><span></span></span>
+      <span class="farme-audio-status" id="audioStatus"></span>
+      <div class="farme-audio-vozwrap">
+        <label for="vozSelect">🗣️ Voz:</label>
+        <select id="vozSelect"></select>
+      </div>
+    </div>
+
+    <h2>Domínios morfoclimáticos</h2>
     <div class="card">
-      <p>O geógrafo brasileiro <strong style="color:var(--txt)">Aziz Ab'Saber</strong> criou o conceito de <strong style="color:var(--txt)">domínio morfoclimático</strong>: uma grande unidade territorial definida pela interação entre <strong style="color:var(--txt)">clima, relevo, vegetação e solo</strong>. É uma forma de regionalizar as paisagens naturais diferente do bioma — enquanto o bioma foca principalmente na vegetação e na fauna típicas de uma área, o domínio olha para o conjunto dos 4 fatores ao mesmo tempo.</p>
-    </div>
-
-    <h3>🗺️ Os 6 domínios morfoclimáticos do Brasil</h3>
-    <div class="cat-grid">
-      <div class="cat-box" style="background:var(--ok-bg);border-color:var(--ok-border)">
-        <span class="cat-icon">🌴</span>
-        <div class="cat-name" style="color:var(--ok-txt)">Amazônico</div>
-        <div class="cat-desc">Clima equatorial e floresta densa</div>
-      </div>
-      <div class="cat-box" style="background:var(--warn-bg);border-color:var(--warn-border)">
-        <span class="cat-icon">🌾</span>
-        <div class="cat-name" style="color:var(--warn-txt)">Cerrado</div>
-        <div class="cat-desc">Savana do Brasil central</div>
-      </div>
-      <div class="cat-box" style="background:#fee2e2;border-color:#ef4444">
-        <span class="cat-icon">🌵</span>
-        <div class="cat-name" style="color:#b91c1c">Caatinga</div>
-        <div class="cat-desc">Semiárido nordestino</div>
-      </div>
-      <div class="cat-box" style="background:var(--info-bg);border-color:#93c5fd">
-        <span class="cat-icon">⛰️</span>
-        <div class="cat-name" style="color:var(--info-txt)">Mares de Morros</div>
-        <div class="cat-desc">Morros arredondados do litoral</div>
-      </div>
-      <div class="cat-box" style="background:#fdf4ff;border-color:#e879f9">
-        <span class="cat-icon">🌲</span>
-        <div class="cat-name" style="color:#581c87">Araucárias</div>
-        <div class="cat-desc">Planaltos subtropicais do Sul</div>
-      </div>
-      <div class="cat-box" style="background:#fce7f3;border-color:#f472b6">
-        <span class="cat-icon">🐴</span>
-        <div class="cat-name" style="color:#be185d">Pradarias</div>
-        <div class="cat-desc">Coxilhas do extremo sul</div>
+      <p>Em 1970, o geógrafo brasileiro <strong style="color:var(--txt)">Aziz Ab'Sáber</strong> propôs uma ideia poderosa: a paisagem não é feita de peças soltas. O <strong style="color:var(--txt)">clima</strong>, o <strong style="color:var(--txt)">relevo</strong>, a <strong style="color:var(--txt)">vegetação</strong> e o <strong style="color:var(--txt)">solo</strong> de uma região se combinam e dependem uns dos outros. Um conjunto dessas quatro camadas que se repete numa área grande é um <strong style="color:var(--txt)">domínio morfoclimático</strong>.</p>
+      <div class="card-sm" style="border-left:4px solid var(--info-txt);margin-top:1rem;margin-bottom:0">
+        <strong style="color:var(--txt);font-size:14px">A grande sacada:</strong>
+        <span style="font-size:14px;color:var(--txt2)"> as camadas não são independentes. Muita chuva o ano todo <em>produz</em> floresta densa; a floresta densa <em>produz</em> a serapilheira que sustenta o solo; a chuva forte <em>esculpe</em> o relevo. Trocar uma camada quebra a lógica das outras — e é isso que você vai testar na Prática.</span>
       </div>
     </div>
 
-    <div class="card">
-      <h3 style="margin-top:0">🔀 Faixas de transição</h3>
-      <p style="margin-bottom:.75rem">Nem sempre um domínio termina exatamente onde o outro começa. Nas <strong style="color:var(--txt)">faixas de transição</strong>, características de dois domínios se misturam numa mesma área — e essas faixas costumam ter uma biodiversidade bem alta. Exemplos: o <strong style="color:var(--txt)">Pantanal</strong> (entre Cerrado e Amazônico), os <strong style="color:var(--txt)">mangues e restingas</strong> do litoral, a <strong style="color:var(--txt)">Mata dos Cocais</strong> e o <strong style="color:var(--txt)">Agreste nordestino</strong>.</p>
-    </div>
-
-    <h3>⛰️ Relevo e clima: uma via de mão dupla</h3>
+    <h3>🇧🇷 Os seis domínios do Brasil</h3>
     <div class="card">
       <div class="steps">
-        <div class="step"><div class="step-n" style="background:var(--info-bg);color:var(--info-txt)">1</div><div class="step-txt"><strong style="color:var(--txt)">O relevo influencia o clima:</strong> uma cadeia de montanhas ou planalto pode agir como <strong style="color:var(--txt)">barreira orográfica</strong>, bloqueando a passagem de massas de ar — é um dos motivos da aridez do sertão nordestino, protegido pelo <strong style="color:var(--txt)">Planalto da Borborema</strong>.</div></div>
-        <div class="step"><div class="step-n" style="background:#fce7f3;color:#be185d">2</div><div class="step-txt"><strong style="color:var(--txt)">O clima também molda o relevo:</strong> ao longo do tempo, o <strong style="color:var(--txt)">intemperismo</strong> (desgaste das rochas) e a <strong style="color:var(--txt)">erosão</strong> vão transformando planaltos, planícies e depressões.</div></div>
-        <div class="step"><div class="step-n" style="background:var(--ok-bg);color:var(--ok-txt)">3</div><div class="step-txt"><strong style="color:var(--txt)">Os rios voadores:</strong> massas de umidade que saem da Floresta Amazônica e viajam pelo ar até outras regiões do Brasil, ajudando a explicar por que o clima de um lugar depende do que acontece bem longe dali.</div></div>
+        <div class="step"><div class="step-n" style="background:#1b7a3e;color:#fff">1</div><div class="step-txt"><strong style="color:var(--txt)">Amazônico</strong> — clima equatorial, quente e úmido o ano todo. Relevo de <strong style="color:var(--txt)">planícies e baixos platôs</strong>. Floresta equatorial densa. Solo pobre: a fertilidade está na <strong style="color:var(--txt)">serapilheira</strong>, a camada de folhas em decomposição sobre o chão.</div></div>
+        <div class="step"><div class="step-n" style="background:#c08a2e;color:#fff">2</div><div class="step-txt"><strong style="color:var(--txt)">Cerrado</strong> — clima tropical com <strong style="color:var(--txt)">estação seca bem definida</strong>. Relevo de chapadas e planaltos. Savana de árvores baixas e retorcidas. Solo ácido e pobre, mas <strong style="color:var(--txt)">corrigível com calagem</strong> — foi o que abriu a fronteira agrícola.</div></div>
+        <div class="step"><div class="step-n" style="background:#b05a2a;color:#fff">3</div><div class="step-txt"><strong style="color:var(--txt)">Caatinga</strong> — clima semiárido, com chuva escassa e irregular. Relevo de <strong style="color:var(--txt)">depressões e serras</strong> do Sertão. Vegetação xerófila e caducifólia (solta as folhas na seca). Solos rasos e pedregosos.</div></div>
+        <div class="step"><div class="step-n" style="background:#2f9e5e;color:#fff">4</div><div class="step-txt"><strong style="color:var(--txt)">Mares de Morros</strong> — clima tropical úmido, sem seca marcada. Relevo de <strong style="color:var(--txt)">morros arredondados</strong> (mamelonar). Mata Atlântica. Solos profundos, porém <strong style="color:var(--txt)">muito erodíveis</strong> — daí os deslizamentos nas encostas ocupadas.</div></div>
+        <div class="step"><div class="step-n" style="background:#3d7a5a;color:#fff">5</div><div class="step-txt"><strong style="color:var(--txt)">Araucárias</strong> — clima subtropical, com <strong style="color:var(--txt)">geadas no inverno</strong>. Relevo de planalto basáltico. Mata de araucária (o pinheiro-do-paraná, uma conífera). Solo de <strong style="color:var(--txt)">terra roxa</strong>, escuro e fértil, formado da rocha basáltica.</div></div>
+        <div class="step"><div class="step-n" style="background:#8fae4a;color:#fff">6</div><div class="step-txt"><strong style="color:var(--txt)">Pradarias</strong> — clima subtropical também, mas relevo de <strong style="color:var(--txt)">coxilhas</strong> (colinas suaves e onduladas). Vegetação de campos e gramíneas. Solos arenosos, sujeitos à <strong style="color:var(--txt)">arenização</strong>.</div></div>
       </div>
-      <div class="card-sm" style="border-left:4px solid var(--ok-txt);margin-top:1rem">
-        <strong style="color:var(--txt);font-size:14px">🎯 Na Prática:</strong>
-        <span style="font-size:14px;color:var(--txt2)"> você vai montar o "perfil" de cada um dos 6 domínios, escolhendo o clima, o relevo, a vegetação e o solo certos entre opções embaralhadas.</span>
+      <div class="card-sm" style="border-left:4px solid var(--warn-border);margin-top:1rem;margin-bottom:0">
+        <strong style="color:var(--txt);font-size:14px">⚠️ Cuidado com a pegadinha:</strong>
+        <span style="font-size:14px;color:var(--txt2)"> Araucárias e Pradarias têm o <strong style="color:var(--txt)">mesmo clima</strong> — subtropical. O que separa os dois são as outras três camadas: planalto/araucária/terra roxa contra coxilha/campo/solo arenoso. Quando duas camadas coincidem, olhe as que restam.</span>
       </div>
     </div>
 
-    <div style="text-align:center;margin-top:1.5rem;margin-bottom:.5rem">
-      <button class="btn btn-p" style="font-size:16px;padding:13px 32px" onclick="show('quiz')">Ir para o Quiz →</button>
+    <h3>🗺️ E entre um domínio e outro?</h3>
+    <div class="card">
+      <p>Ab'Sáber lembrou que nenhum domínio termina numa linha. Entre eles existem as <strong style="color:var(--txt)">faixas de transição</strong>, onde as características se misturam: a <strong style="color:var(--txt)">Mata dos Cocais</strong> entre a Amazônia e a Caatinga, o <strong style="color:var(--txt)">Agreste</strong> entre a Caatinga e a Mata Atlântica, e o <strong style="color:var(--txt)">Pantanal</strong> entre o Cerrado, a Amazônia e o Chaco.</p>
+      <div class="card-sm" style="border-left:4px solid var(--info-txt);margin-top:1rem;margin-bottom:0">
+        <strong style="color:var(--txt);font-size:14px">🏞️ Na Prática:</strong>
+        <span style="font-size:14px;color:var(--txt2)"> duas fases, e você escolhe por onde começar. Na <strong style="color:var(--txt)">Montagem</strong>, você constrói a paisagem camada por camada e vê o desenho se formar na tela da máquina. Na <strong style="color:var(--txt)">Oficina de Reparos</strong>, recebe paisagens montadas com <strong style="color:var(--txt)">uma camada intrusa</strong> e precisa achar qual não pertence ali.</span>
+      </div>
     </div>
+
+    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-p" style="font-size:16px;padding:13px 32px" onclick="show('quiz')">Ir para o Quiz →</button></div>
   </div>
 
-  <!-- ══════════════════════ QUIZ ══════════════════════ -->
   <div id="quiz" class="section">
     <h2>Teste seus conhecimentos</h2>
     <div class="q-progress" id="qprog"></div>
     <div id="qcontent"></div>
     <div class="score-box" id="scorebox">
-      <div class="score-n" id="scoren"></div>
-      <div class="score-s" id="scores"></div>
+      <div class="score-n" id="scoren"></div><div class="score-s" id="scores"></div>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.75rem">
         <button class="btn" onclick="restartQ()">Tentar novamente</button>
         <button class="btn btn-p" onclick="show('pratica')">Ir para a Prática →</button>
@@ -214,16 +264,13 @@ button,.q-opt,.bd-opt{-webkit-tap-highlight-color:transparent}
     </div>
   </div>
 
-  <!-- ══════════════════════ PRÁTICA — CONSTRUTOR DE DOMÍNIOS ══════════════════════ -->
   <div id="pratica" class="section">
-    <h2>🧩 Construtor de Domínios</h2>
-    <div class="bd-wrap" id="bdWrapOuter"></div>
+    <h2>🏞️ Máquina de Paisagem</h2>
+    <div class="mp-wrap" id="mpWrapOuter"></div>
   </div>
 </div>
 
-<footer>
-  <p>Prof. Me. Christopher De Andrade Cardoso &nbsp;|&nbsp; <a href="https://inspira.prof/" target="_blank">inspira.prof</a></p>
-</footer>
+<footer><p>Prof. Me. Christopher De Andrade Cardoso &nbsp;|&nbsp; <a href="https://inspira.prof/" target="_blank" rel="noopener">inspira.prof</a></p></footer>
 
 <div class="balloon-overlay" id="balloonOverlay">
   <div class="balloon-box">
@@ -235,526 +282,673 @@ button,.q-opt,.bd-opt{-webkit-tap-highlight-color:transparent}
 </div>
 
 <script>
-// ══════════════════════════════════════════════════════════════
-// GUARDA ANTI-CLIQUE-RÁPIDO — FARME AURA v11
-// Impede que o aluno atravesse a atividade toda apertando rápido.
-// ══════════════════════════════════════════════════════════════
-const FARME_GUARDA = {
-  travado: false,
-  ultimoEm: 0,
-  MIN_MS: 400,     // intervalo mínimo entre duas respostas
-  DESTRAVA_MS: 900 // quanto tempo o feedback fica na tela
-};
-// Devolve true se o clique VALE. Devolve false se deve ser ignorado.
-function farmePodeResponder(){
-  const agora = Date.now();
-  if(FARME_GUARDA.travado) return false;
-  if(agora - FARME_GUARDA.ultimoEm < FARME_GUARDA.MIN_MS) return false;
-  FARME_GUARDA.travado = true;
-  FARME_GUARDA.ultimoEm = agora;
-  return true;
-}
-// Chame quando o feedback terminar e a próxima questão já estiver na tela.
-function farmeLiberar(){
-  setTimeout(() => { FARME_GUARDA.travado = false; }, FARME_GUARDA.DESTRAVA_MS);
-}
-// Desliga os elementos clicáveis enquanto o feedback/transição aparece.
-function farmeDesabilitarBotoes(seletor){
-  document.querySelectorAll(seletor || '.alternativa, .opcao, .btn-resposta')
-    .forEach(b => {
-      b.disabled = true;
-      b.style.pointerEvents = 'none';
-      b.style.opacity = '.65';
-    });
-}
+/* ═══════════════════════════════════════════════════════════════════════
+   KIT FARME AURA v2 — audiolivro com seletor de voz (bloco padrão)
+   Aqui só usamos o módulo de áudio (lerTutorial/pausarTutorial/pararTutorial
+   + seletor de voz). A guarda anti-clique e o placar desta atividade
+   continuam no sistema próprio dela (FARME_GUARDA / enviarScoreFarme),
+   já validados — não foram alterados.
+   ═══════════════════════════════════════════════════════════════════════ */
+const FarmeKit = (function(){
+  const dentroDoFarme = window.parent && window.parent !== window;
+  const st = { vozPreferida:null };
 
+  let lendo = false, pausado = false;
+  const CHAVE_VOZ_LOCAL = 'farmeVozEscolhida';
+  function vozLocalSalva(){ try{ return localStorage.getItem(CHAVE_VOZ_LOCAL); }catch(e){ return null; } }
+  function salvarVozLocal(nome){ try{ localStorage.setItem(CHAVE_VOZ_LOCAL, nome); }catch(e){} }
+
+  window.addEventListener('message', e => {
+    const d = e.data;
+    if(d && d.tipo === 'FARME_CONFIG' && d.voz && !vozLocalSalva()) st.vozPreferida = d.voz;
+  });
+
+  function textoTutorial(){
+    const sec = document.getElementById('tutorial');
+    if(!sec) return '';
+    const copia = sec.cloneNode(true);
+    copia.querySelectorAll('.aula-cab, .farme-audio, button, svg, script').forEach(el=>el.remove());
+    return (copia.innerText || '').replace(/\s+/g,' ').trim();
+  }
+
+  function escolherVoz(){
+    const vozes = window.speechSynthesis.getVoices();
+    if(st.vozPreferida){
+      const v = vozes.find(x => x.name === st.vozPreferida);
+      if(v) return v;
+    }
+    return vozes.find(v => /pt[-_]?br/i.test(v.lang)) || vozes.find(v => /^pt/i.test(v.lang)) || null;
+  }
+
+  function popularSeletorVoz(){
+    const sel = document.getElementById('vozSelect');
+    if(!sel || !window.speechSynthesis) return;
+    const vozes = window.speechSynthesis.getVoices();
+    if(!vozes.length) return;
+    const pt = vozes.filter(v => /^pt/i.test(v.lang));
+    const lista = (pt.length ? pt : vozes).slice().sort((a,b)=>a.name.localeCompare(b.name));
+    const salva = vozLocalSalva();
+    sel.innerHTML = lista.map(v =>
+      `<option value="${v.name.replace(/"/g,'&quot;')}">${v.name.replace(/^(Microsoft|Google)\s*/,'')} (${v.lang})</option>`
+    ).join('');
+    if(salva && lista.some(v => v.name===salva)){
+      sel.value = salva; st.vozPreferida = salva;
+    } else if(lista[0] && !st.vozPreferida){
+      st.vozPreferida = lista[0].name;
+    }
+    sel.onchange = () => {
+      st.vozPreferida = sel.value;
+      salvarVozLocal(sel.value);
+      if(lendo) lerTutorial();
+    };
+  }
+  if(window.speechSynthesis){
+    popularSeletorVoz();
+    window.speechSynthesis.onvoiceschanged = popularSeletorVoz;
+  }
+
+  function lerTutorial(){
+    if(!window.speechSynthesis){ statusAudio('Seu navegador não tem vozes disponíveis.'); return; }
+    if(pausado){ window.speechSynthesis.resume(); pausado=false; marcar(true); return; }
+    window.speechSynthesis.cancel();
+    const texto = textoTutorial();
+    if(!texto){ statusAudio('Nada para ler aqui.'); return; }
+    const frases = texto.match(/[^.!?]+[.!?]+|\s*[^.!?]+$/g) || [texto];
+    const voz = escolherVoz();
+    frases.forEach((f,i)=>{
+      const u = new SpeechSynthesisUtterance(f.trim());
+      u.lang='pt-BR'; u.rate=0.98;
+      if(voz) u.voice = voz;
+      if(i===frases.length-1) u.onend = ()=>{ lendo=false; pausado=false; marcar(false); };
+      window.speechSynthesis.speak(u);
+    });
+    lendo = true; marcar(true);
+  }
+  function pausarTutorial(){ if(!lendo) return; window.speechSynthesis.pause(); pausado=true; lendo=false; marcar(false,true); }
+  function pararTutorial(){ if(window.speechSynthesis) window.speechSynthesis.cancel(); lendo=false; pausado=false; marcar(false); }
+
+  function marcar(estaLendo, estaPausado){
+    const q = id => document.getElementById(id);
+    if(q('btnLer')){
+      q('btnLer').style.display = estaLendo?'none':'';
+      q('btnLer').classList.toggle('pulsa', !estaLendo);
+      q('btnLer').textContent = estaPausado ? '▶️ Continuar ouvindo' : '🔊 Clique aqui para ouvir o texto';
+    }
+    if(q('btnPausar')) q('btnPausar').style.display = estaLendo?'':'none';
+    if(q('btnParar'))  q('btnParar').style.display  = (estaLendo||estaPausado)?'':'none';
+    if(q('audioOnda')) q('audioOnda').style.display = estaLendo?'inline-flex':'none';
+    statusAudio(estaLendo?'Lendo em voz alta…':(estaPausado?'Pausado':''));
+  }
+  function statusAudio(t){ const e=document.getElementById('audioStatus'); if(e) e.textContent=t; }
+
+  window.addEventListener('beforeunload', pararTutorial);
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) pararTutorial(); });
+
+  /* O ping de "FARME_ATIVIDADE_PRONTA" já é enviado pelo bloco de
+     integração com o iframe no fim do arquivo — não duplicar aqui. */
+  return { st, lerTutorial, pausarTutorial, pararTutorial, dentroDoFarme };
+})();
+/* ════════════════════ FIM DO KIT FARME AURA v2 (áudio) ════════════════════ */
+
+// ══════════ GUARDA ANTI-CLIQUE-RÁPIDO — FARME AURA v11 ══════════
+const FARME_GUARDA={travado:false,ultimoEm:0,MIN_MS:400,DESTRAVA_MS:900};
+function farmePodeResponder(){
+  const a=Date.now();
+  if(FARME_GUARDA.travado) return false;
+  if(a-FARME_GUARDA.ultimoEm<FARME_GUARDA.MIN_MS) return false;
+  FARME_GUARDA.travado=true; FARME_GUARDA.ultimoEm=a; return true;
+}
+function farmeLiberar(){ setTimeout(()=>{FARME_GUARDA.travado=false;},FARME_GUARDA.DESTRAVA_MS); }
+function farmeDesabilitarBotoes(s){
+  document.querySelectorAll(s||'.alternativa, .opcao, .btn-resposta').forEach(b=>{b.disabled=true;b.style.pointerEvents='none';b.style.opacity='.65';});
+}
 function show(id){
+  if(id!=='tutorial') FarmeKit.pararTutorial();
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const map={tutorial:'Tutorial',quiz:'Quiz',pratica:'Prática'};
-  document.querySelectorAll('.nav-btn').forEach(b=>{if(b.textContent.includes(map[id]))b.classList.add('active');});
+  const m={tutorial:'Tutorial',quiz:'Quiz',pratica:'Prática'};
+  document.querySelectorAll('.nav-btn').forEach(b=>{if(b.textContent.includes(m[id]))b.classList.add('active');});
 }
-
-/* ═══════════════════════ SFX ═══════════════════════ */
-let sfxMuted=false;
-let _actx=null;
-function _getActx(){
-  if(!_actx){ const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return null; _actx=new AC(); }
-  if(_actx.state==='suspended') _actx.resume();
-  return _actx;
+let sfxMuted=false,_actx=null;
+function _getActx(){ if(!_actx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return null;_actx=new AC();} if(_actx.state==='suspended')_actx.resume(); return _actx; }
+function beep(f,d,t,v,dl){
+  if(sfxMuted)return; const c=_getActx(); if(!c)return;
+  t=t||'square';v=v||0.12;dl=dl||0;
+  const t0=c.currentTime+dl,o=c.createOscillator(),g=c.createGain();
+  o.type=t;o.frequency.setValueAtTime(f,t0);g.gain.setValueAtTime(0,t0);
+  g.gain.linearRampToValueAtTime(v,t0+0.01);g.gain.exponentialRampToValueAtTime(0.001,t0+d);
+  o.connect(g).connect(c.destination);o.start(t0);o.stop(t0+d+0.03);
 }
-function beep(freq,dur,type,vol,delay){
-  if(sfxMuted) return;
-  const ctx=_getActx(); if(!ctx) return;
-  type=type||'square';vol=vol||0.12;delay=delay||0;
-  const t0=ctx.currentTime+delay;
-  const osc=ctx.createOscillator(); const gain=ctx.createGain();
-  osc.type=type; osc.frequency.setValueAtTime(freq,t0);
-  gain.gain.setValueAtTime(0,t0);
-  gain.gain.linearRampToValueAtTime(vol,t0+0.01);
-  gain.gain.exponentialRampToValueAtTime(0.001,t0+dur);
-  osc.connect(gain).connect(ctx.destination);
-  osc.start(t0); osc.stop(t0+dur+0.03);
-}
-function sfxClick(){ beep(500,0.05,'square',0.08); }
-function sfxCorrect(){ beep(880,0.09,'square',0.12); beep(1320,0.12,'square',0.10,0.08); }
-function sfxWrong(){ beep(180,0.18,'sawtooth',0.13); }
-function sfxWin(){ beep(523,0.1,'square',0.12); beep(659,0.1,'square',0.12,0.1); beep(784,0.1,'square',0.12,0.2); beep(1046,0.25,'square',0.14,0.3); }
-function toggleSfx(){
-  sfxMuted=!sfxMuted;
-  const btn=document.getElementById('sfx-btn');
-  if(btn) btn.textContent=sfxMuted?'🔇':'🔊';
-  if(!sfxMuted) beep(700,0.06,'square',0.1);
-}
-
-function shuffleArray(arr){
-  const a=arr.slice();
-  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
-  return a;
-}
-
+function sfxClick(){beep(500,0.05,'square',0.08);}
+function sfxCorrect(){beep(880,0.09,'square',0.12);beep(1320,0.12,'square',0.10,0.08);}
+function sfxWrong(){beep(180,0.18,'sawtooth',0.13);}
+function sfxWin(){beep(523,0.1,'square',0.12);beep(659,0.1,'square',0.12,0.1);beep(784,0.1,'square',0.12,0.2);beep(1046,0.25,'square',0.14,0.3);}
+function sfxBarra(){beep(420,0.05,'square',0.08);beep(620,0.05,'square',0.06,0.04);}
+function toggleSfx(){sfxMuted=!sfxMuted;const b=document.getElementById('sfx-btn');if(b)b.textContent=sfxMuted?'🔇':'🔊';if(!sfxMuted)beep(700,0.06,'square',0.1);}
+function sfxCamada(){beep(560,0.045,'square',0.07);beep(760,0.05,'square',0.05,0.04);}
+function shuffleArray(a){const r=a.slice();for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
 /* ═══════════════════════ QUIZ ═══════════════════════ */
 const QRAW=[
-  {
-    visual:'',
-    q:'Quem formulou o conceito de domínio morfoclimático, usado para estudar as grandes paisagens naturais do Brasil?',
-    opts:['O geógrafo brasileiro Aziz Ab\'Saber','O geógrafo brasileiro Milton Santos','O geógrafo brasileiro Josué de Castro','O geógrafo francês Pierre Monbeig'],
-    ci:0,
-    fb:'O conceito de domínio morfoclimático foi formulado pelo geógrafo brasileiro Aziz Ab\'Saber, integrando clima, relevo, vegetação e solo.'
-  },{
-    visual:'',
-    q:'O que diferencia um domínio morfoclimático de um bioma?',
-    opts:['Domínio ignora completamente o clima da região','Domínio é sinônimo de bioma, sem diferença nenhuma','Domínio une clima, relevo, solo e vegetação','Domínio existe só fora do território brasileiro'],
-    ci:2,
-    fb:'O domínio morfoclimático é um conceito mais amplo que o bioma: ele integra clima, relevo, solo e vegetação numa mesma unidade territorial.'
-  },{
-    visual:'',
-    q:'O que são as "faixas de transição" entre domínios morfoclimáticos?',
-    opts:['Linhas de fronteira entre dois estados brasileiros','Áreas com características de dois domínios ao mesmo tempo','Regiões sem nenhuma vegetação em todo o território','Áreas onde nunca ocorre nenhum tipo de chuva'],
-    ci:1,
-    fb:'Faixas de transição são áreas onde características de dois domínios se misturam — costumam ter biodiversidade elevada, como o Pantanal.'
-  },{
-    visual:'',
-    q:'Qual é um exemplo de faixa de transição citado na aula?',
-    opts:['O centro histórico da cidade de Manaus','A orla urbana da Baía de Guanabara','O terminal portuário da cidade de Santos','O Pantanal, entre os domínios Cerrado e Amazônico'],
-    ci:3,
-    fb:'O Pantanal é um exemplo clássico de faixa de transição, misturando características dos domínios do Cerrado e Amazônico.'
-  },{
-    visual:'',
-    q:'O que é uma barreira orográfica?',
-    opts:['Um relevo que bloqueia a passagem de massas de ar','Um tipo de solo raso encontrado no litoral','Um instrumento usado para medir a temperatura','Um rio que corta um planalto de norte a sul'],
-    ci:0,
-    fb:'Uma barreira orográfica é um relevo elevado que bloqueia massas de ar — como o Planalto da Borborema, que contribui para a aridez do sertão.'
-  },{
-    visual:'',
-    q:'Como o clima pode influenciar a formação do relevo ao longo do tempo?',
-    opts:['O clima nunca interfere na formação do relevo','Apenas construindo novas montanhas vulcânicas','Por meio do intemperismo e da erosão das rochas','Somente através de terremotos e tsunamis'],
-    ci:2,
-    fb:'O clima molda o relevo ao longo do tempo por meio do intemperismo (desgaste das rochas) e da erosão, transformando planaltos e planícies.'
-  },{
-    visual:'',
-    q:'O que são os "rios voadores"?',
-    opts:['Rios subterrâneos que nunca chegam à superfície','Massas de umidade da Amazônia que viajam pelo ar','Correntes marítimas que cercam o litoral brasileiro','Canais artificiais usados para irrigação agrícola'],
-    ci:1,
-    fb:'Rios voadores são massas de umidade que saem da Floresta Amazônica e viajam pela atmosfera, levando chuva a outras regiões do Brasil.'
-  },{
-    visual:'',
-    q:'Qual é o papel do Planalto da Borborema na aridez do clima semiárido nordestino?',
-    opts:['Ele aumenta a umidade do ar em toda a região Nordeste','Ele não tem nenhuma influência sobre o clima local','Ele funciona como fonte de água para os rios da região','Ele bloqueia a umidade vinda do oceano, deixando o interior mais seco'],
-    ci:3,
-    fb:'O Planalto da Borborema funciona como barreira orográfica, bloqueando a umidade do oceano e deixando o interior nordestino mais seco.'
-  }
+  {q:'Qual é a ideia central do conceito de domínio morfoclimático?',
+   opts:['Clima, relevo, vegetação e solo formam um conjunto','O relevo determina sozinho toda a paisagem','A vegetação muda conforme a altitude','Cada estado brasileiro tem o seu domínio'],
+   ci:0,
+   fb:'🌍 Foi Aziz Ab’Sáber quem propôs, em 1970, olhar a paisagem como um conjunto integrado. Num domínio as quatro camadas se explicam mutuamente: a chuva farta sustenta a floresta, a floresta produz a serapilheira e a serapilheira é o que segura a fertilidade do solo.'},
+
+  {q:'Perto de Manaus (AM) o solo é pobre em nutrientes. Como a floresta se mantém tão exuberante?',
+   opts:['A cheia do rio traz adubo todo ano','A fertilidade está na serapilheira, não no solo','O solo profundo guarda muitos nutrientes','As árvores buscam nutrientes na rocha'],
+   ci:1,
+   fb:'🌍 Na Amazônia o nutriente fica circulando: a folha cai, se decompõe depressa no chão quente e úmido, e a raiz reabsorve. É um ciclo quase fechado — por isso, derrubada a floresta, o solo se esgota em poucos anos e a área vira pasto de baixa produtividade.'},
+
+  {q:'O que permitiu que o Cerrado se tornasse a maior fronteira agrícola do Brasil?',
+   opts:['A chegada de chuvas mais abundantes','O relevo de morros facilitar as máquinas','A correção da acidez do solo com calagem','A troca da savana por floresta densa'],
+   ci:2,
+   fb:'🧮 O domínio ocupa 23,3% de 8.510.000 km² ≈ 1.983.000 km². 🌍 O solo é ácido e pobre por natureza; a pesquisa agronômica brasileira mostrou, a partir dos anos 1970, como corrigir essa acidez com calcário. O relevo de chapadas, plano e amplo, é ideal para máquinas grandes.'},
+
+  {q:'Por que a vegetação da Caatinga perde as folhas na estação seca?',
+   opts:['Porque o solo raso impede o crescimento','Para atrair polinizadores na estação seca','Porque o frio do inverno queima as folhas','Para reduzir a perda de água pela transpiração'],
+   ci:3,
+   fb:'🌍 A folha é justamente por onde a planta perde água — soltá-la (ser caducifólia) é estratégia de sobrevivência. No sertão de Petrolina (PE) chove cerca de 500 mm por ano, e de forma tão irregular que pode faltar chuva por vários anos seguidos.'},
+
+  {q:'Nos Mares de Morros, por que as encostas ocupadas deslizam tanto na chuva?',
+   opts:['O solo é profundo mas muito erodível','O solo é raso e apoiado sobre pedras','A chuva se concentra em poucos dias','O relevo é plano e a água não escoa'],
+   ci:0,
+   fb:'🌍 O clima úmido decompõe a rocha numa camada espessa de solo. Enquanto a Mata Atlântica a segura com as raízes, tudo fica no lugar; retirada a mata e cortada a encosta para construir, a água encharca esse solo profundo e ele desliza. É a origem das tragédias em Petrópolis (RJ) e no litoral paulista.'},
+
+  {q:'Araucárias e Pradarias têm o mesmo clima subtropical. O que então separa os dois?',
+   opts:['A latitude em que cada um se localiza','O relevo, a vegetação e o tipo de solo','A quantidade de chuva que cada um recebe','A presença ou não de geadas no inverno'],
+   ci:1,
+   fb:'🌍 Quando uma camada coincide, a resposta está nas outras três. Araucárias: planalto basáltico, mata de pinheiro-do-paraná e terra roxa fértil. Pradarias: coxilhas onduladas, campos de gramíneas e solo arenoso. Geada os dois têm — o clima não distingue.'},
+
+  {q:'Por que a terra roxa do domínio das Araucárias é tão fértil?',
+   opts:['Se forma no fundo de antigos lagos','Recebe adubo natural das araucárias','Vem da decomposição da rocha basáltica','Acumula sedimentos trazidos pelos rios'],
+   ci:2,
+   fb:'🌍 O basalto é uma rocha vulcânica rica em minerais; ao se decompor, gera um solo escuro e avermelhado, profundo e fértil, que sustenta a agricultura do Paraná e do oeste paulista. O nome vem do italiano rosso, que quer dizer vermelho — nada a ver com a cor roxa.'},
+
+  {q:'O que é a arenização, problema característico do domínio das Pradarias?',
+   opts:['Perda de areia levada pelo vento do mar','Avanço do deserto sobre a área de campo','Salinização do solo causada pela irrigação','Areia enterrada que aflora e se espalha'],
+   ci:3,
+   fb:'🌍 No sudoeste do Rio Grande do Sul há depósitos de areia sob o campo. Retirada a vegetação — por pastoreio excessivo ou lavoura —, a areia aflora em manchas chamadas areais. Não é desertificação: ali chove cerca de 1.400 mm por ano, chuva de sobra. Falta é vegetação segurando o chão.'},
+
+  {q:'Um domínio ocupa 23,3% dos 8.510.000 km² do Brasil. Quantos km² isso dá?',
+   opts:['Cerca de 1.983.000 km²','Cerca de 198.000 km²','Cerca de 4.212.000 km²','Cerca de 852.000 km²'],
+   ci:0,
+   fb:'🧮 0,233 × 8.510.000 ≈ 1.983.000 km². 🌍 Repare no erro escondido na opção de 198.000 km²: quem calcula 2,33% em vez de 23,3% troca a casa decimal e chega lá. Esse é o tamanho do domínio do Cerrado, o segundo maior do país.'},
+
+  {q:'A mata de araucária cobria cerca de 200.000 km² e restam perto de 3%. Quanto sobrou?',
+   opts:['Cerca de 66.000 km²','Cerca de 6.000 km²','Cerca de 600 km²','Cerca de 60.000 km²'],
+   ci:1,
+   fb:'🧮 3% de 200.000 = 0,03 × 200.000 = 6.000 km². As outras opções são os erros clássicos de casa decimal. 🌍 Sobrou algo próximo da área do Distrito Federal. A araucária foi derrubada em massa pela indústria madeireira no século XX e hoje consta na lista de espécies ameaçadas.'},
+
+  {q:'Caderno de campo: geada no inverno, pinheiros de copa em forma de taça, solo vermelho-escuro. Que domínio é?',
+   opts:['Pradarias','Mares de Morros','Araucárias','Cerrado'],
+   ci:2,
+   fb:'🌍 As três pistas fecham juntas: a geada indica clima subtropical, o pinheiro-do-paraná é a conífera que dá nome ao domínio e o vermelho-escuro é a terra roxa do basalto. Perto de Lages (SC), a cerca de 900 m de altitude, é exatamente essa a paisagem.'},
+
+  {q:'O que são as faixas de transição descritas por Ab’Sáber?',
+   opts:['Trechos de domínio já desmatados','Fronteiras exatas entre dois domínios','Regiões que trocam de domínio no ano','Áreas onde dois domínios se misturam'],
+   ci:3,
+   fb:'🌍 Nenhum domínio termina numa linha desenhada no chão. A Mata dos Cocais mistura Amazônia e Caatinga no Maranhão e no Piauí; o Agreste faz a passagem da Zona da Mata para o Sertão; e o Pantanal combina influências do Cerrado, da Amazônia e do Chaco.'}
 ];
 
-function shuffleOne(q){
-  const indices=[0,1,2,3];
-  for(let i=indices.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [indices[i],indices[j]]=[indices[j],indices[i]]; }
-  const newOpts=indices.map(i=>q.opts[i]);
-  const newCI=indices.indexOf(q.ci);
-  return {...q,opts:newOpts,ci:newCI};
-}
-function shuffleOpts(qraw){
-  const shuffledOrder=shuffleArray(qraw);
-  const out=shuffledOrder.map(shuffleOne);
-  for(let i=2;i<out.length;i++){
-    let tries=0;
-    while(out[i].ci===out[i-1].ci && out[i].ci===out[i-2].ci && tries<25){ out[i]=shuffleOne(shuffledOrder[i]); tries++; }
-  }
-  return out;
-}
-
+function shuffleOne(q){const i=[0,1,2,3];for(let k=i.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[i[k],i[j]]=[i[j],i[k]];}return {...q,opts:i.map(x=>q.opts[x]),ci:i.indexOf(q.ci)};}
+function shuffleOpts(r){const o=shuffleArray(r),out=o.map(shuffleOne);for(let i=2;i<out.length;i++){let t=0;while(out[i].ci===out[i-1].ci&&out[i].ci===out[i-2].ci&&t<25){out[i]=shuffleOne(o[i]);t++;}}return out;}
 let QUIZ=shuffleOpts(QRAW);
 let QS={cur:0,ans:Array(QUIZ.length).fill(null)};
-let quizScore=0;
-let uiLocked=false;
+let quizScore=0,uiLocked=false;
 const COOLDOWN_MS=280;
-
 function renderQ(){
-  const prog=document.getElementById('qprog');
-  prog.innerHTML=QUIZ.map((q,i)=>{
-    let c='q-dot';
-    if(QS.ans[i]!==null) c+=QS.ans[i]===q.ci?' ok':' err';
-    else if(i===QS.cur) c+=' cur';
-    return `<div class="${c}"></div>`;
-  }).join('');
-
+  document.getElementById('qprog').innerHTML=QUIZ.map((q,i)=>{let c='q-dot';if(QS.ans[i]!==null)c+=QS.ans[i]===q.ci?' ok':' err';else if(i===QS.cur)c+=' cur';return `<div class="${c}"></div>`;}).join('');
   if(QS.cur>=QUIZ.length){
     document.getElementById('qcontent').style.display='none';
-    const sc=QS.ans.filter((a,i)=>a===QUIZ[i].ci).length;
-    quizScore=sc;
-    const sb=document.getElementById('scorebox');sb.style.display='block';
+    const sc=QS.ans.filter((a,i)=>a===QUIZ[i].ci).length; quizScore=sc;
+    document.getElementById('scorebox').style.display='block';
     document.getElementById('scoren').textContent=`${sc}/${QUIZ.length}`;
-    const pct=Math.round(sc/QUIZ.length*100);
-    const msgs=['Continue praticando! Releia o tutorial com atenção e tente novamente.','Bom progresso! Você está quase dominando o conteúdo!','Muito bem! Você entendeu o conteúdo!','Perfeito! Desempenho de excelência!'];
-    document.getElementById('scores').textContent=pct<50?msgs[0]:pct<75?msgs[1]:pct<100?msgs[2]:msgs[3];
-    enviarPontuacaoTotal();
-    return;
+    const p=Math.round(sc/QUIZ.length*100);
+    const m=['Continue praticando! Releia o tutorial e tente novamente.','Bom progresso! Você está quase dominando o conteúdo!','Muito bem! Você entendeu o conteúdo!','Perfeito! Desempenho de excelência!'];
+    document.getElementById('scores').textContent=p<50?m[0]:p<75?m[1]:p<100?m[2]:m[3];
+    enviarPontuacaoTotal(); return;
   }
   document.getElementById('scorebox').style.display='none';
   document.getElementById('qcontent').style.display='block';
-  const q=QUIZ[QS.cur];
-  const prev=QS.ans[QS.cur];
-  const done=prev!==null;
-
+  const q=QUIZ[QS.cur],pv=QS.ans[QS.cur],done=pv!==null;
   document.getElementById('qcontent').innerHTML=`
-    <div class="card">
-      <div class="q-text">Questão ${QS.cur+1}: ${q.q}</div>
-      <div class="q-opts">${q.opts.map((o,i)=>{
-        let c='q-opt';
-        if(done){c+=' dis';if(i===q.ci)c+=' ok';else if(i===prev)c+=' err';}
-        return `<button class="${c}" onclick="ansQ(${i})">${String.fromCharCode(65+i)}) ${o}</button>`;
-      }).join('')}</div>
-    </div>
-    <div class="q-nav">
-      <button class="btn" onclick="prevQ()" ${(QS.cur===0||uiLocked)?'disabled':''}>← Anterior</button>
-      <span class="q-ctr">${QS.cur+1} de ${QUIZ.length}</span>
-    </div>`;
+    <div class="card"><div class="q-text">Questão ${QS.cur+1}: ${q.q}</div>
+    <div class="q-opts">${q.opts.map((o,i)=>{let c='q-opt';if(done){c+=' dis';if(i===q.ci)c+=' ok';else if(i===pv)c+=' err';}return `<button class="${c}" onclick="ansQ(${i})">${String.fromCharCode(65+i)}) ${o}</button>`;}).join('')}</div></div>
+    <div class="q-nav"><button class="btn" onclick="prevQ()" ${(QS.cur===0||uiLocked)?'disabled':''}>← Anterior</button><span class="q-ctr">${QS.cur+1} de ${QUIZ.length}</span></div>`;
 }
-function ansQ(i){
-  if(uiLocked) return;
-  if(QS.ans[QS.cur]!==null) return;
-  uiLocked=true;
-  QS.ans[QS.cur]=i;
-  renderQ();
-  const correct=i===QUIZ[QS.cur].ci;
-  correct?sfxCorrect():sfxWrong();
-  showBalloon(correct, QUIZ[QS.cur], i);
+function ansQ(i){ if(uiLocked)return; if(QS.ans[QS.cur]!==null)return; uiLocked=true;QS.ans[QS.cur]=i;renderQ(); const ok=i===QUIZ[QS.cur].ci; ok?sfxCorrect():sfxWrong(); showBalloon(ok,QUIZ[QS.cur]); }
+function prevQ(){ if(uiLocked)return; if(QS.cur>0){QS.cur--;renderQ();} }
+function restartQ(){ QUIZ=shuffleOpts(QRAW);QS={cur:0,ans:Array(QUIZ.length).fill(null)};quizScore=0;uiLocked=false;document.getElementById('balloonOverlay').classList.remove('show','err');enviarPontuacaoTotal();renderQ(); }
+const CONGRATS=["Mandou bem! ✅","Isso aí! 🎯","Show de bola! 🌟","Acertou em cheio! 🔥","Excelente! 💪","Perfeito! 🏆","Muito bem! 👏","Na mosca! 🎯","Você está craque. 🧠","Certeiro! 🚀","Impecável! 💎","Top demais! 🔝"];
+function showBalloon(ok,q){
+  const ov=document.getElementById('balloonOverlay'),last=QS.cur===QUIZ.length-1;
+  ov.classList.toggle('err',!ok);
+  if(ok){document.getElementById('balloonEmoji').textContent=['🎉','✅','🌟','🔥','🏆'][Math.floor(Math.random()*5)];
+    document.getElementById('balloonTitle').textContent='Resposta correta!';
+    document.getElementById('balloonMsg').innerHTML='<b>'+CONGRATS[Math.floor(Math.random()*CONGRATS.length)]+'</b><br><br>'+q.fb;
+  }else{document.getElementById('balloonEmoji').textContent='💡';
+    document.getElementById('balloonTitle').textContent='Não foi dessa vez';
+    document.getElementById('balloonMsg').innerHTML='A correta era <b>'+String.fromCharCode(65+q.ci)+') '+q.opts[q.ci]+'</b>.<br><br>'+q.fb;}
+  document.getElementById('balloonBtn').textContent=last?'Ver resultado →':'Continuar →';
+  ov.classList.add('show');
 }
-function prevQ(){ if(uiLocked) return; if(QS.cur>0){QS.cur--;renderQ();} }
-function restartQ(){
-  QUIZ=shuffleOpts(QRAW);QS={cur:0,ans:Array(QUIZ.length).fill(null)};quizScore=0;uiLocked=false;
-  document.getElementById('balloonOverlay').classList.remove('show','err');
-  renderQ();
-}
+function continueBalloon(){ const ov=document.getElementById('balloonOverlay'); if(!ov.classList.contains('show'))return; ov.classList.remove('show'); QS.cur++;renderQ(); setTimeout(()=>{uiLocked=false;renderQ();},COOLDOWN_MS); }
 
-const CONGRATS=[
-"Mandou bem! ✅","Isso aí! Resposta certa. 🎯","Show de bola! 🌟","Acertou em cheio! 🔥",
-"Excelente! Continue assim. 💪","Perfeito! Você manda bem nisso. 🏆","Muito bem! 👏","Na mosca! 🎯",
-"Isso mesmo! Você está craque. 🧠","Aí sim! Resposta na régua. 📐","Sensacional! Continue focado. ✨",
-"Boa! Seu raciocínio está afiado. 🔍","Parabéns! Você domina o assunto. 👏","Certeiro! Bora pra próxima. 🚀",
-"Isso! Você está voando. ✈️","Resposta impecável! 💎","Muito bom! Continue nesse ritmo. ⏱️",
-"Você acertou! Segue o jogo. 🎮","Top demais! 🔝","Boa, hein! Vai que é sua. 💥",
-"Correto! Você está mandando bem. 👍","Demais! Isso é conhecimento de verdade. 📚","Uhul! Resposta certeira. 🙌",
-"Isso! Confiança nesse conteúdo. 💪","Excelente raciocínio! 🧩","Acertou! Segue firme. 🏃",
-"Boa demais! Você é fera nisso. 🐆","Certíssimo! 🎉","Isso aí, campeão(ã)! 🏅","Você mandou muito bem! 🙌",
-"Resposta na régua! 📏","Sensacional! Continue assim. 🌈","Boa! Você está evoluindo. 📈",
-"Show! Isso é dedicação. 🎬","Muito bem pensado! 🧠","Isso! Você entendeu direitinho. ✅",
-"Perfeito! Bora continuar. 🔄","Parabéns! Cada acerto conta. ➕","Correto! Seu esforço está valendo. 💯",
-"Aí sim, hein! 👌","Muito bem! Continue estudando assim. 📖","Você foi bem! Confiança total. 🌟",
-"Certo! Próxima pergunta te espera. ➡️","Que resposta! 🔥","Boa! Seu conhecimento tá afiado. ⚔️",
-"Isso mesmo, parabéns! 🎊","Você está mandando muito bem hoje! ☀️","Resposta certeira, adorei! 💚",
-"Excelente! Continue firme no propósito. 🎯","Isso! Vai com tudo pra próxima. 💨",
-"Muito bem! Você está craque nesse tema. 🧠","Boa! Você está no caminho certo. 🛤️",
-"Perfeito! Continue confiante. 🦸","Show! Aprendizado de verdade. 🎓","Certo! Você merece esse ponto. ⭐",
-"Isso aí! Você está brilhando. ✨","Muito bem! Foco total. 🎯","Boa resposta! Continue assim. 🙂",
-"Você acertou de novo! Sequência boa. 🔁","Isso! Cada acerto é uma vitória. 🏆",
-"Correto! Seu estudo está dando resultado. 📊","Muito bem! Você está craque. 🧑‍🎓",
-"Boa! Isso mostra que você entendeu. 💡","Isso aí! Segue o jogo com tudo. 🎮","Excelente resposta! 🌟",
-"Você mandou bem demais! 🙌","Certo! Continue com essa energia. ⚡","Perfeito! Você está evoluindo rápido. 🚀",
-"Boa! Vamos para a próxima. ➡️","Isso! Você está com tudo hoje. 🔥","Muito bem! Confiança em alta. 📈",
-"Resposta certa! Você é fera. 🐯","Show de bola! Continue assim. ⚽","Isso aí! Você está no ponto certo. 📍",
-"Correto! Seu foco está valendo a pena. 🎯","Muito bem! Cada questão te deixa mais forte. 💪",
-"Boa! Isso é aprendizado de verdade. 📚","Você acertou! Parabéns pelo empenho. 🙏",
-"Isso! Continue nesse embalo. 🎶","Excelente! Você está arrasando. 💥","Certo! Bora seguir com tudo. 🏁",
-"Muito bem! Você está cada vez melhor. 🌱","Boa resposta! Confiança lá em cima. 📈",
-"Isso aí! Sua dedicação está valendo. 🕒","Perfeito! Continue assim até o final. 🏁",
-"Você mandou bem! Segue firme. 🧭","Correto! Isso mostra que você estudou. 📖",
-"Muito bem! Você está no seu melhor momento. 🌟","Boa! Cada acerto conta muito. ➕",
-"Isso! Continue confiante assim. 💚","Excelente! Você está mandando muito bem. 🏆",
-"Certo! Vamos pra próxima com essa energia. ⚡","Muito bem! Você está de parabéns. 🎉",
-"Boa resposta! Continue assim, sem parar. 🏃‍♂️","Isso aí! Você está brilhando hoje. ✨",
-"Perfeito! Seu raciocínio está no ponto. 🧠","Você acertou! Continue com essa dedicação. 📌",
-"Correto! Isso é resultado de bom estudo. 🎓","Muito bem! Falta pouco pra terminar com chave de ouro. 🔑",
-"Excelente! Você concluiu essa com maestria. 🏅"
+/* ═══════════════════════════════════════════════════════════════════
+   PRÁTICA — "MÁQUINA DE PAISAGEM"  ·  duas fases, com menu de escolha
+   Fase 1 (Montagem): o aluno escolhe as 4 camadas desenhadas e a
+   paisagem se forma na tela da máquina.
+   Fase 2 (Oficina de Reparos): paisagem montada com UMA camada intrusa;
+   o aluno acha e troca.
+   ═══════════════════════════════════════════════════════════════════ */
+const PTS_CAMADA=10, PTS_REPARO=25;
+
+const CAMADAS=[
+  {id:'clima', rot:'CÉU E CLIMA', ico:'☀️'},
+  {id:'relevo',rot:'RELEVO',      ico:'⛰️'},
+  {id:'veg',   rot:'VEGETAÇÃO',   ico:'🌿'},
+  {id:'solo',  rot:'SOLO',        ico:'🟫'}
 ];
 
-function showBalloon(correct,q,chosenIndex){
-  const overlay=document.getElementById('balloonOverlay');
-  const emoji=document.getElementById('balloonEmoji');
-  const title=document.getElementById('balloonTitle');
-  const msg=document.getElementById('balloonMsg');
-  const btn=document.getElementById('balloonBtn');
-  const isLast=QS.cur===QUIZ.length-1;
-  overlay.classList.toggle('err',!correct);
-  if(correct){
-    emoji.textContent=['🎉','✅','🌟','🔥','🏆'][Math.floor(Math.random()*5)];
-    title.textContent='Resposta correta!';
-    msg.textContent=CONGRATS[Math.floor(Math.random()*CONGRATS.length)];
-  } else {
-    emoji.textContent='💡';
-    title.textContent='Não foi dessa vez';
-    const letra=String.fromCharCode(65+q.ci);
-    msg.textContent=`A alternativa correta era ${letra}) ${q.opts[q.ci]}. ${q.fb}`;
-  }
-  btn.textContent=isLast?'Ver resultado →':'Continuar →';
-  overlay.classList.add('show');
-}
-function continueBalloon(){
-  const overlay=document.getElementById('balloonOverlay');
-  if(!overlay.classList.contains('show')) return;
-  overlay.classList.remove('show');
-  QS.cur++;
-  renderQ();
-  setTimeout(()=>{ uiLocked=false; renderQ(); }, COOLDOWN_MS);
-}
-
-/* ═══════════════════════ PRÁTICA — "CONSTRUTOR DE DOMÍNIOS" ═══════════════════════
-   Mecânica de montagem de perfil: para cada domínio, o aluno preenche 4
-   categorias (clima, relevo, vegetação, solo) escolhendo entre opções
-   embaralhadas de TODOS os domínios — reforça que um domínio é a interação
-   de vários fatores, não uma característica isolada. Mecânica nova, diferente
-   do mapa clicável usado na Atividade 1. */
-const DOMINIOS=[
-  {id:'amazonico', label:'Amazônico', icon:'🌴'},
-  {id:'cerrado', label:'Cerrado', icon:'🌾'},
-  {id:'caatinga', label:'Caatinga', icon:'🌵'},
-  {id:'mares_morros', label:'Mares de Morros', icon:'⛰️'},
-  {id:'araucarias', label:'Araucárias', icon:'🌲'},
-  {id:'pradarias', label:'Pradarias', icon:'🐴'}
-];
-const CATEGORIAS=[
-  {id:'clima', label:'Clima', icon:'☀️'},
-  {id:'relevo', label:'Relevo', icon:'⛰️'},
-  {id:'vegetacao', label:'Vegetação', icon:'🌿'},
-  {id:'solo', label:'Solo', icon:'🟫'}
-];
-const ATRIBUTOS={
-  amazonico:{
-    clima:'Equatorial, quente e úmido o ano todo',
-    relevo:'Planície e planaltos cobertos pela floresta',
-    vegetacao:'Floresta equatorial densa e latifoliada',
-    solo:'Pouco fértil (lixiviado), exceto a terra preta de índio'
-  },
-  cerrado:{
-    clima:'Tropical, com verão chuvoso e inverno seco',
-    relevo:'Planaltos, berço das grandes bacias hidrográficas',
-    vegetacao:'Savana com árvores tortuosas e raízes profundas',
-    solo:'Ácido, mas corrigível para a agricultura'
-  },
-  caatinga:{
-    clima:'Semiárido, quente e com chuvas escassas',
-    relevo:'Planaltos e depressões do interior nordestino',
-    vegetacao:'Xeromórfica, adaptada à seca (cactos, arbustos)',
-    solo:'Raso e pedregoso, pobre em matéria orgânica'
-  },
-  mares_morros:{
-    clima:'Tropical úmido, próximo ao litoral',
-    relevo:'Morros arredondados (o "mar de morros")',
-    vegetacao:'Mata Atlântica, hoje bastante fragmentada',
-    solo:'Rico em matéria orgânica, mas sujeito à erosão'
-  },
-  araucarias:{
-    clima:'Subtropical, com invernos mais frios',
-    relevo:'Planaltos da Região Sul do Brasil',
-    vegetacao:'Floresta de araucárias (pinheiro-do-paraná)',
-    solo:'Fértil, associado ao basalto (terra roxa)'
-  },
-  pradarias:{
-    clima:'Subtropical, com estações bem demarcadas',
-    relevo:'Coxilhas (colinas suaves) do extremo sul',
-    vegetacao:'Campos de gramíneas (bioma Pampa)',
-    solo:'Sujeito à arenização pelo uso inadequado'
-  }
+const OPCOES={
+  clima:[
+    {id:'eq',  lbl:'Quente e úmido o ano todo'},
+    {id:'tsec',lbl:'Tropical com estação seca'},
+    {id:'semi',lbl:'Semiárido, chuva rara'},
+    {id:'tum', lbl:'Tropical úmido, sem seca'},
+    {id:'sub', lbl:'Subtropical, com geada'}],
+  relevo:[
+    {id:'plan',lbl:'Planícies e baixos platôs'},
+    {id:'chap',lbl:'Chapadas de topo plano'},
+    {id:'depr',lbl:'Depressões e serras'},
+    {id:'morr',lbl:'Morros arredondados'},
+    {id:'palt',lbl:'Planalto basáltico'},
+    {id:'coxi',lbl:'Coxilhas onduladas'}],
+  veg:[
+    {id:'feq',lbl:'Floresta equatorial'},
+    {id:'sav',lbl:'Savana de árvores tortas'},
+    {id:'xer',lbl:'Xerófila, com cactos'},
+    {id:'mat',lbl:'Mata Atlântica'},
+    {id:'ara',lbl:'Mata de araucária'},
+    {id:'cam',lbl:'Campos de gramíneas'}],
+  solo:[
+    {id:'serr',lbl:'Pobre, com serapilheira'},
+    {id:'acid',lbl:'Ácido, mas corrigível'},
+    {id:'raso',lbl:'Raso e pedregoso'},
+    {id:'prof',lbl:'Profundo e erodível'},
+    {id:'roxa',lbl:'Terra roxa fértil'},
+    {id:'aren',lbl:'Arenoso e solto'}]
 };
 
-let build={};
-let practiceScore=0;
-const PTS_POR_ITEM=20, PTS_POR_ERRO=5;
+const DOMINIOS=[
+  {id:'ama',nome:'Domínio Amazônico',clima:'eq',relevo:'plan',veg:'feq',solo:'serr',
+   desc:'Estamos a 60 m de altitude, perto de Manaus (AM). Chove praticamente todo mês e o calor não dá trégua. O terreno é baixo e quase plano até onde a vista alcança. As árvores fecham um teto verde lá em cima. Cavamos: sob uma camada grossa de folhas em decomposição, o solo é claro e pobre.',
+   porque:'🌍 A fertilidade aqui não está no solo, e sim na serapilheira — a manta de folhas que se decompõe depressa no calor úmido e devolve o nutriente direto para as raízes. É um ciclo quase fechado, e é por isso que, derrubada a floresta, a terra se esgota em poucos anos.'},
 
-function resetBuild(){
-  build={
-    order:shuffleArray(DOMINIOS.map(d=>d.id)), // ✏️ REGRA: ordem dos domínios sempre sorteada
-    idx:0,
-    filled:{clima:false,relevo:false,vegetacao:false,solo:false},
-    options:{},
-    wrongAttempts:0,
-    doneDomains:[]
-  };
+  {id:'cer',nome:'Domínio do Cerrado',clima:'tsec',relevo:'chap',veg:'sav',solo:'acid',
+   desc:'Chapada dos Veadeiros (GO). Faz seis meses que não chove — e daqui a pouco começa o período das águas, como todo ano. Ao fundo, um paredão de topo perfeitamente plano. As árvores são baixas, de tronco torto e casca grossa, espalhadas sobre o capim. O solo é avermelhado e o teste indica acidez alta.',
+   porque:'🧮 O domínio ocupa 23,3% do território: 0,233 × 8.510.000 ≈ 1.983.000 km². 🌍 O tronco torto e a casca grossa protegem do fogo, que faz parte do ciclo natural daqui. A acidez do solo travou a agricultura até os anos 1970, quando a correção com calcário abriu a maior fronteira agrícola do país.'},
+
+  {id:'caa',nome:'Domínio da Caatinga',clima:'semi',relevo:'depr',veg:'xer',solo:'raso',
+   desc:'Sertão de Petrolina (PE). Chove cerca de 500 mm por ano, e de forma tão irregular que já faltou chuva por três anos seguidos. Estamos numa depressão, com serras recortadas ao longe. Os mandacarus se erguem entre arbustos de galhos nus. A enxada bate na pedra a poucos centímetros.',
+   porque:'🌍 Cada camada responde à falta de água: a planta xerófila guarda água no caule e solta as folhas na seca para não transpirar; o solo é raso porque a rocha mal se decompõe sem umidade. É o único domínio que existe apenas no Brasil.'},
+
+  {id:'mar',nome:'Domínio dos Mares de Morros',clima:'tum',relevo:'morr',veg:'mat',solo:'prof',
+   desc:'Serra de Petrópolis (RJ). Chove o ano inteiro, sem estação seca marcada. O horizonte é uma sucessão de morros arredondados, um atrás do outro, como ondas. Onde a mata resistiu, ela é fechada e cheia de epífitas. O corte da estrada mostra um solo avermelhado com vários metros de profundidade.',
+   porque:'🌍 A umidade constante decompõe a rocha em uma camada espessa de solo. Enquanto a Mata Atlântica segura essa camada com as raízes, tudo fica no lugar. Retirada a mata e cortada a encosta para construir, a água encharca esse solo profundo e ele desliza — a origem das tragédias em Petrópolis e no litoral paulista.'},
+
+  {id:'ara',nome:'Domínio das Araucárias',clima:'sub',relevo:'palt',veg:'ara',solo:'roxa',
+   desc:'Arredores de Lages (SC), a cerca de 900 m de altitude. Amanheceu com geada branca sobre o campo. Estamos no alto de um planalto de degraus escuros de rocha vulcânica. Os pinheiros têm tronco reto e copa aberta em forma de taça. O solo é vermelho-escuro, profundo e muito fértil.',
+   porque:'🧮 Restam cerca de 3% da mata original: 0,03 × 200.000 km² = 6.000 km², algo próximo da área do Distrito Federal. 🌍 A terra roxa vem da decomposição do basalto, rocha vulcânica rica em minerais. O nome vem do italiano rosso, que quer dizer vermelho — nada a ver com a cor roxa.'},
+
+  {id:'pra',nome:'Domínio das Pradarias',clima:'sub',relevo:'coxi',veg:'cam',solo:'aren',
+   desc:'Campanha gaúcha, perto de Bagé (RS). Também aqui geia no inverno. Mas o relevo é outro: colinas suaves e onduladas, que se repetem sem parar. Não há floresta — só campo baixo de gramíneas, até o horizonte. Onde o gado pisou demais, aparecem manchas de areia solta.',
+   porque:'🌍 Atenção à pegadinha: o clima é o mesmo das Araucárias, subtropical com geada. Quem separa os dois são as outras três camadas. As manchas de areia são a arenização — e não desertificação: aqui chove cerca de 1.400 mm por ano. É a areia enterrada que aflora quando a vegetação sai.'}
+];
+
+function domPorId(id){ return DOMINIOS.filter(d=>d.id===id)[0]; }
+function rotuloDe(cam,id){ const o=OPCOES[cam].filter(x=>x.id===id)[0]; return o?o.lbl:'—'; }
+
+/* ═══ desenho: cada camada ocupa uma faixa da mesma cena 320×190 ═══ */
+function ceuSvg(id){
+  if(!id) return `<rect x="0" y="0" width="320" height="100" fill="#dfe4e8"/>
+    <text x="160" y="52" text-anchor="middle" font-size="11" fill="#9aa2a8">céu não montado</text>`;
+  if(id==='eq') return `<rect x="0" y="0" width="320" height="100" fill="#9fb6bd"/>
+    <g fill="#7d949c"><ellipse cx="70" cy="26" rx="56" ry="17"/><ellipse cx="196" cy="18" rx="66" ry="16"/><ellipse cx="290" cy="30" rx="44" ry="14"/></g>
+    <g stroke="#c6d6db" stroke-width="1.6" opacity=".75">${Array.from({length:22},(_,i)=>`<line x1="${i*15+6}" y1="${38+(i%3)*5}" x2="${i*15+1}" y2="${58+(i%3)*5}"/>`).join('')}</g>`;
+  if(id==='tsec') return `<rect x="0" y="0" width="320" height="100" fill="#a8cbe0"/>
+    <circle cx="252" cy="30" r="17" fill="#ffd75e"/><circle cx="252" cy="30" r="25" fill="#ffd75e" opacity=".25"/>
+    <g fill="#fff" opacity=".7"><ellipse cx="72" cy="24" rx="34" ry="9"/><ellipse cx="150" cy="34" rx="26" ry="7"/></g>`;
+  if(id==='semi') return `<rect x="0" y="0" width="320" height="100" fill="#f2e2b4"/>
+    <circle cx="214" cy="26" r="20" fill="#ffc23a"/><circle cx="214" cy="26" r="31" fill="#ffc23a" opacity=".22"/>
+    <g stroke="#e0c184" stroke-width="1.4" opacity=".8">${[58,68,78].map(y=>`<path d="M14 ${y} q16 -5 32 0 t32 0 t32 0 t32 0"/>`).join('')}</g>`;
+  if(id==='tum') return `<rect x="0" y="0" width="320" height="100" fill="#bcd0d8"/>
+    <circle cx="238" cy="28" r="16" fill="#ffe9a8" opacity=".85"/>
+    <g fill="#e3ecef" opacity=".92"><ellipse cx="228" cy="32" rx="48" ry="13"/><ellipse cx="96" cy="24" rx="52" ry="14"/></g>
+    <g stroke="#eef4f6" stroke-width="5" opacity=".55"><line x1="0" y1="72" x2="320" y2="70"/><line x1="0" y1="84" x2="320" y2="86"/></g>`;
+  return `<rect x="0" y="0" width="320" height="100" fill="#cfe0ec"/>
+    <circle cx="60" cy="34" r="15" fill="#fdf6d8" opacity=".9"/>
+    <g fill="#fff" opacity=".85">${[[128,22],[168,34],[210,20],[252,32],[290,24],[96,40],[186,48],[268,46]].map(p=>`<path d="M${p[0]} ${p[1]-5} l1.6 3.6 l3.9 .5 l-2.8 2.7 l.7 3.9 l-3.4 -1.9 l-3.4 1.9 l.7 -3.9 l-2.8 -2.7 l3.9 -.5Z"/>`).join('')}</g>
+    <g stroke="#eaf2f8" stroke-width="4" opacity=".6"><line x1="0" y1="80" x2="320" y2="78"/></g>`;
+}
+function relevoSvg(id){
+  if(!id) return `<path d="M0 130 L320 130 L320 100 L0 100Z" fill="#d0d4d6" opacity=".5"/>
+    <text x="160" y="120" text-anchor="middle" font-size="11" fill="#9aa2a8">relevo não montado</text>`;
+  const c='#8a8577', c2='#6f6a5d';
+  if(id==='plan') return `<path d="M0 118 L92 116 L108 108 L214 107 L232 116 L320 115 L320 142 L0 142Z" fill="${c}"/>
+    <path d="M0 126 Q80 122 160 126 T320 124 L320 142 L0 142Z" fill="${c2}" opacity=".55"/>`;
+  if(id==='chap') return `<path d="M0 126 L44 126 L52 82 L150 80 L158 126 L204 126 L212 92 L286 91 L294 126 L320 126 L320 142 L0 142Z" fill="${c}"/>
+    <g stroke="${c2}" stroke-width="1.4" opacity=".8">${[92,102,112].map(y=>`<line x1="54" y1="${y}" x2="156" y2="${y-1}"/>`).join('')}</g>`;
+  if(id==='depr') return `<path d="M0 100 L34 74 L64 106 L92 122 Q160 136 228 120 L256 104 L288 72 L320 100 L320 142 L0 142Z" fill="${c}"/>
+    <path d="M92 124 Q160 137 228 122 L228 142 L92 142Z" fill="${c2}" opacity=".5"/>
+    <g stroke="${c2}" stroke-width="2" fill="none" opacity=".85"><path d="M22 88 L34 74 L46 90"/><path d="M276 86 L288 72 L300 88"/></g>`;
+  if(id==='morr') return `<path d="M0 132 Q30 96 60 132 Q92 92 124 132 Q156 90 188 132 Q220 96 252 132 Q286 94 320 132 L320 142 L0 142Z" fill="${c}"/>
+    <path d="M0 138 Q44 112 88 138 Q134 110 180 138 Q228 112 274 138 Q300 122 320 138 L320 142 L0 142Z" fill="${c2}" opacity=".5"/>`;
+  if(id==='palt') return `<path d="M0 96 L206 94 L216 106 L246 105 L256 118 L286 117 L296 128 L320 128 L320 142 L0 142Z" fill="${c}"/>
+    <g fill="#5d5850" opacity=".8"><rect x="208" y="96" width="38" height="9" rx="2"/><rect x="248" y="108" width="38" height="9" rx="2"/><rect x="288" y="120" width="32" height="8" rx="2"/></g>
+    <g stroke="${c2}" stroke-width="1.3" opacity=".7">${[104,114,124].map(y=>`<line x1="0" y1="${y}" x2="200" y2="${y-1}"/>`).join('')}</g>`;
+  return `<path d="M0 124 Q40 112 80 124 T160 124 T240 124 T320 122 L320 142 L0 142Z" fill="${c}"/>
+    <path d="M0 134 Q52 124 104 134 T208 134 T320 132 L320 142 L0 142Z" fill="${c2}" opacity=".45"/>`;
+}
+function vegSvg(id){
+  if(!id) return `<text x="160" y="140" text-anchor="middle" font-size="11" fill="#9aa2a8">vegetação não montada</text>`;
+  if(id==='feq') return `<g stroke="#4a3a26" stroke-width="4">${[26,74,124,176,226,278].map(x=>`<line x1="${x}" y1="118" x2="${x}" y2="160"/>`).join('')}</g>
+    <g fill="#0f5a2e">${[16,60,106,154,202,250,296].map((x,i)=>`<ellipse cx="${x}" cy="${104-(i%3)*6}" rx="30" ry="19"/>`).join('')}</g>
+    <g fill="#17743c">${[38,86,134,182,230,278].map((x,i)=>`<ellipse cx="${x}" cy="${120-(i%2)*5}" rx="26" ry="15"/>`).join('')}</g>`;
+  if(id==='sav') return `<g stroke="#7d8f3e" stroke-width="2">${Array.from({length:36},(_,i)=>`<line x1="${i*9+4}" y1="162" x2="${i*9+7}" y2="${144-(i%4)*5}"/>`).join('')}</g>
+    <g stroke="#5d4426" stroke-width="4" fill="none">
+      <path d="M52 156 L50 128 M50 128 L38 116 M50 128 L64 118"/>
+      <path d="M152 158 L156 130 M156 130 L142 120 M156 130 L172 122"/>
+      <path d="M252 154 L248 126 M248 126 L236 116 M248 126 L262 118"/></g>
+    <g fill="#5f7a34" opacity=".93"><ellipse cx="48" cy="114" rx="21" ry="10"/><ellipse cx="158" cy="118" rx="23" ry="11"/><ellipse cx="250" cy="114" rx="20" ry="10"/></g>`;
+  if(id==='xer') return `<g fill="#4f7a3a">
+      <rect x="60" y="118" width="12" height="44" rx="6"/><rect x="45" y="132" width="10" height="30" rx="5"/><rect x="77" y="128" width="10" height="34" rx="5"/>
+      <rect x="216" y="124" width="12" height="38" rx="6"/><rect x="203" y="138" width="9" height="24" rx="4"/></g>
+    <g stroke="#6b5334" stroke-width="2.5" fill="none">
+      <path d="M140 162 L138 132 M138 132 L124 120 M138 132 L154 122 M138 144 L126 134"/>
+      <path d="M282 160 L284 136 M284 136 L272 126 M284 136 L296 128"/></g>
+    <g fill="#9a8055" opacity=".7">${[24,100,178,254,306].map((x,i)=>`<ellipse cx="${x}" cy="${158+(i%2)*3}" rx="${8+(i%3)*3}" ry="3.5"/>`).join('')}</g>`;
+  if(id==='mat') return `<path d="M0 126 Q34 100 70 126 Q106 98 142 126 Q178 96 214 126 Q250 100 286 126 Q306 112 320 126 L320 164 L0 164Z" fill="#1f6b42"/>
+    <path d="M0 138 Q44 116 92 140 Q138 118 186 142 Q234 118 320 142 L320 164 L0 164Z" fill="#2a8a54"/>
+    <g fill="#15532f" opacity=".5">${Array.from({length:24},(_,i)=>`<circle cx="${i*13+8}" cy="${146+(i%4)*5}" r="${5+(i%3)*2}"/>`).join('')}</g>`;
+  if(id==='ara') return `<g stroke="#5a4530" stroke-width="4">${[46,110,176,244,294].map(x=>`<line x1="${x}" y1="102" x2="${x}" y2="160"/>`).join('')}</g>
+    <g fill="#26603c">${[46,110,176,244,294].map((x,i)=>{const y=100-(i%2)*7;return `<path d="M${x-30} ${y} Q${x} ${y-16} ${x+30} ${y} Q${x} ${y+9} ${x-30} ${y}Z"/><path d="M${x-20} ${y+13} Q${x} ${y+2} ${x+20} ${y+13} Q${x} ${y+20} ${x-20} ${y+13}Z"/>`;}).join('')}</g>
+    <g stroke="#7d9a4e" stroke-width="1.6">${Array.from({length:30},(_,i)=>`<line x1="${i*11+5}" y1="162" x2="${i*11+7}" y2="${152-(i%3)*4}"/>`).join('')}</g>`;
+  return `<path d="M0 130 Q80 122 160 130 T320 126 L320 164 L0 164Z" fill="#8aa84c"/>
+    <path d="M0 142 Q90 134 180 142 T320 138 L320 164 L0 164Z" fill="#9cba58"/>
+    <g stroke="#6f8c3a" stroke-width="1.4">${Array.from({length:54},(_,i)=>`<line x1="${i*6+3}" y1="164" x2="${i*6+5}" y2="${150-(i%3)*5}"/>`).join('')}</g>`;
+}
+function soloSvg(id){
+  const moldura=`<rect x="0" y="158" width="320" height="32" fill="#000" opacity=".06"/>`;
+  if(!id) return moldura+`<text x="160" y="178" text-anchor="middle" font-size="11" fill="#9aa2a8">solo não montado</text>`;
+  if(id==='serr') return `<rect x="0" y="158" width="320" height="32" fill="#d8cfa8"/>
+    <rect x="0" y="158" width="320" height="9" fill="#4a3a1e"/>
+    <g fill="#6b5528">${Array.from({length:26},(_,i)=>`<ellipse cx="${i*13+7}" cy="${161+(i%3)}" rx="7" ry="2.6"/>`).join('')}</g>
+    <g fill="#c4b78e" opacity=".8">${Array.from({length:18},(_,i)=>`<circle cx="${i*18+9}" cy="${176+(i%4)*3}" r="1.8"/>`).join('')}</g>`;
+  if(id==='acid') return `<rect x="0" y="158" width="320" height="32" fill="#b5714a"/>
+    <rect x="0" y="158" width="320" height="5" fill="#8f5636"/>
+    <g fill="#a05f3c" opacity=".8">${Array.from({length:22},(_,i)=>`<circle cx="${i*15+8}" cy="${172+(i%3)*5}" r="2.4"/>`).join('')}</g>`;
+  if(id==='raso') return `<rect x="0" y="158" width="320" height="32" fill="#8c8172"/>
+    <rect x="0" y="158" width="320" height="7" fill="#6f6352"/>
+    <g fill="#5e5a52">${[8,54,104,152,200,250,296].map((x,i)=>`<rect x="${x}" y="${168+(i%2)*3}" width="${26+(i%3)*8}" height="${14-(i%2)*3}" rx="3"/>`).join('')}</g>`;
+  if(id==='prof') return `<rect x="0" y="158" width="320" height="32" fill="#a9603c"/>
+    <rect x="0" y="158" width="320" height="4" fill="#7d4429"/>
+    <path d="M120 158 L128 190 L140 190 L130 158Z" fill="#6d3a22" opacity=".8"/>
+    <path d="M236 158 L242 190 L252 190 L245 158Z" fill="#6d3a22" opacity=".6"/>
+    <g stroke="#8e5030" stroke-width="1.2" opacity=".7">${[168,178,186].map(y=>`<line x1="0" y1="${y}" x2="320" y2="${y}"/>`).join('')}</g>`;
+  if(id==='roxa') return `<rect x="0" y="158" width="320" height="32" fill="#6e2f22"/>
+    <rect x="0" y="158" width="320" height="6" fill="#4d1f16"/>
+    <g fill="#84392a">${Array.from({length:24},(_,i)=>`<ellipse cx="${i*14+8}" cy="${172+(i%4)*4}" rx="5" ry="3.4"/>`).join('')}</g>
+    <g fill="#3a1710" opacity=".55">${[40,140,244].map(x=>`<rect x="${x}" y="182" width="30" height="8" rx="3"/>`).join('')}</g>`;
+  return `<rect x="0" y="158" width="320" height="32" fill="#e6d5a2"/>
+    <rect x="0" y="158" width="320" height="4" fill="#cdb87f"/>
+    <g fill="#cfbb85">${Array.from({length:46},(_,i)=>`<circle cx="${i*7+4}" cy="${168+(i%5)*4}" r="1.9"/>`).join('')}</g>`;
+}
+function cenaSvg(sel){
+  return `<svg class="mp-cena" viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Paisagem montada na máquina">
+    ${ceuSvg(sel.clima)}${relevoSvg(sel.relevo)}${vegSvg(sel.veg)}${soloSvg(sel.solo)}</svg>`;
+}
+/* miniatura = a mesma função, recortada na faixa da camada */
+const RECORTE={clima:'6 4 308 92', relevo:'6 74 308 70', veg:'6 92 308 74', solo:'6 156 308 34'};
+function miniSvg(cam,id){
+  const corpo = cam==='clima'?ceuSvg(id) : cam==='relevo'?(`<rect x="0" y="60" width="320" height="86" fill="#cfe0ea"/>`+relevoSvg(id))
+              : cam==='veg'?(`<rect x="0" y="88" width="320" height="80" fill="#d5e3d2"/>`+vegSvg(id)) : soloSvg(id);
+  return `<svg viewBox="${RECORTE[cam]}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${corpo}</svg>`;
+}
+
+let mp=null, practiceScore=0;
+function getMP(){ return mp; }
+function getPS(){ return practiceScore; }
+
+function resetPaisagem(){
   practiceScore=0;
-  montarPalco();
-  startDomain();
+  mp={fase:0,f1feita:false,f2feita:false,ptsF1:0,ptsF2:0,
+      ordem1:shuffleArray(DOMINIOS.map((_,i)=>i)), cur1:0, camadasOk:0,
+      ordem2:shuffleArray(DOMINIOS.map((_,i)=>i)), cur2:0, acertos2:0, intrusas:{},
+      sel:{clima:null,relevo:null,veg:null,solo:null},
+      revelar:null, finalizado:false};
+  sortearIntrusas();
+  renderPratica();
 }
-
-function montarPalco(){
-  document.getElementById('bdWrapOuter').innerHTML=`
-    <div class="bd-instructions">👉 Escolha, em cada categoria, a opção certa para o domínio mostrado. As opções misturam os 6 domínios — preste atenção!</div>
-    <div id="bdHud" class="bd-hud"></div>
-    <div id="bdBanner"></div>
-    <div id="bdCats"></div>
-    <div id="bdLegend" class="bd-legend"></div>`;
-}
-
-function currentDomainId(){ return build.order[build.idx]; }
-
-function startDomain(){
-  const domId=currentDomainId();
-  build.filled={clima:false,relevo:false,vegetacao:false,solo:false};
-  build.options={};
-  CATEGORIAS.forEach(cat=>{
-    build.options[cat.id]=shuffleArray(DOMINIOS.map(d=>({domainId:d.id, text:ATRIBUTOS[d.id][cat.id]})));
+/* para cada rodada da fase 2, sorteia QUAL camada vem errada e com que valor */
+function sortearIntrusas(){
+  mp.intrusas={};
+  DOMINIOS.forEach(d=>{
+    const cam=CAMADAS[Math.floor(Math.random()*CAMADAS.length)].id;
+    const alternativas=OPCOES[cam].filter(o=>o.id!==d[cam]);
+    mp.intrusas[d.id]={cam:cam, valor:alternativas[Math.floor(Math.random()*alternativas.length)].id};
   });
-  renderBuild();
+}
+function iniciarFase(n){
+  if(!mp||mp.finalizado) return;
+  if(n===1&&mp.f1feita) return;
+  if(n===2&&mp.f2feita) return;
+  sfxClick(); mp.fase=n; mp.revelar=null;
+  if(n===1){ mp.cur1=0; mp.sel={clima:null,relevo:null,veg:null,solo:null}; }
+  else { mp.cur2=0; carregarReparo(); }
+  renderPratica();
+}
+function carregarReparo(){
+  const d=DOMINIOS[mp.ordem2[mp.cur2]];
+  const it=mp.intrusas[d.id];
+  mp.sel={clima:d.clima,relevo:d.relevo,veg:d.veg,solo:d.solo};
+  mp.sel[it.cam]=it.valor;
+}
+function voltarAoMenu(){
+  if(!mp||mp.finalizado||mp.revelar) return;
+  sfxClick(); mp.fase=0; renderPratica();
 }
 
-function renderBuild(){
-  const total=DOMINIOS.length;
-  const domId=currentDomainId();
-  const dom=DOMINIOS.find(d=>d.id===domId);
-
-  document.getElementById('bdHud').innerHTML=`
-    <div class="bd-chip">Domínios: ${build.doneDomains.length}/${total}</div>
-    <div class="bd-chip">Tentativas erradas: ${build.wrongAttempts}</div>`;
-
-  document.getElementById('bdBanner').innerHTML=`
-    <div class="bd-banner">
-      <div class="bd-banner-icon">${dom.icon}</div>
-      <div>
-        <div class="bd-banner-title">Domínio ${dom.label}</div>
-        <div class="bd-banner-sub">Preencha as 4 categorias abaixo com as opções certas para este domínio</div>
-      </div>
-    </div>`;
-
-  document.getElementById('bdCats').innerHTML=CATEGORIAS.map(cat=>{
-    const isFilled=build.filled[cat.id];
-    const optsHTML=build.options[cat.id].map(opt=>{
-      const isCorrectOpt=(opt.domainId===domId);
-      let cls='bd-opt';
-      if(isFilled && isCorrectOpt) cls+=' correct';
-      return `<button class="${cls}" ${isFilled?'disabled':''} onclick="chooseAttr('${cat.id}','${opt.domainId}')">${opt.text}</button>`;
-    }).join('');
-    return `<div class="bd-cat ${isFilled?'filled':''}">
-      <div class="bd-cat-label">${cat.icon} ${cat.label} ${isFilled?'✅':''}</div>
-      <div class="bd-opts">${optsHTML}</div>
-    </div>`;
-  }).join('');
-
-  const legendHTML=build.doneDomains.map(id=>{
-    const d=DOMINIOS.find(x=>x.id===id);
-    return `<div class="bd-legend-row done">${d.icon} <strong>${d.label}</strong> concluído ✅</div>`;
-  }).join('');
-  document.getElementById('bdLegend').innerHTML=legendHTML;
+/* escolher camada é manipulação livre: não passa pelo guarda */
+function escolherCamada(cam,id){
+  if(!mp||mp.finalizado||mp.revelar||mp.fase===0) return;
+  mp.sel[cam] = (mp.sel[cam]===id && mp.fase===1) ? null : id;
+  sfxCamada();
+  renderPratica();
 }
+function montagemCompleta(){ return CAMADAS.every(c=>!!mp.sel[c.id]); }
 
-function chooseAttr(catId, optDomainId){
-  if(build.filled[catId]) return;
-  const domId=currentDomainId();
-  if(optDomainId===domId){
-    build.filled[catId]=true;
-    sfxCorrect();
-    renderBuild();
-    const allFilled=CATEGORIAS.every(c=>build.filled[c.id]);
-    if(allFilled) completeDomain();
-  } else {
-    build.wrongAttempts++;
-    sfxWrong();
-    renderBuild();
-  }
+function confirmarMontagem(){
+  if(!mp||mp.finalizado||mp.revelar||mp.fase!==1) return;
+  if(!montagemCompleta()) return;
+  if(!farmePodeResponder()) return;
+  const d=DOMINIOS[mp.ordem1[mp.cur1]];
+  const detalhe=CAMADAS.map(c=>({cam:c.id,rot:c.rot,ico:c.ico,posto:mp.sel[c.id],certo:d[c.id],ok:mp.sel[c.id]===d[c.id]}));
+  const nOk=detalhe.filter(x=>x.ok).length;
+  mp.camadasOk+=nOk; practiceScore+=nOk*PTS_CAMADA;
+  if(nOk===4) sfxCorrect(); else sfxWrong();
+  mp.revelar={tipo:'montagem',nOk:nOk,detalhe:detalhe,dom:d};
+  renderPratica();
 }
-
-function completeDomain(){
-  build.doneDomains.push(currentDomainId());
-  sfxWin();
-  if(build.doneDomains.length>=DOMINIOS.length){
-    finalizarPratica();
-  } else {
-    setTimeout(()=>{
-      build.idx++;
-      startDomain();
-    }, 550);
-  }
+function confirmarReparo(){
+  if(!mp||mp.finalizado||mp.revelar||mp.fase!==2) return;
+  if(!farmePodeResponder()) return;
+  const d=DOMINIOS[mp.ordem2[mp.cur2]];
+  const it=mp.intrusas[d.id];
+  const ok=CAMADAS.every(c=>mp.sel[c.id]===d[c.id]);
+  if(ok){ mp.acertos2++; practiceScore+=PTS_REPARO; sfxCorrect(); } else sfxWrong();
+  const erradas=CAMADAS.filter(c=>mp.sel[c.id]!==d[c.id]).map(c=>c.id);
+  mp.revelar={tipo:'reparo',ok:ok,dom:d,intrusa:it,erradas:erradas};
+  renderPratica();
 }
-
-function finalizarPratica(){
-  const totalItens=DOMINIOS.length*CATEGORIAS.length;
-  const base=PTS_POR_ITEM*totalItens;
-  const desconto=PTS_POR_ERRO*build.wrongAttempts;
-  practiceScore=Math.max(0, base-desconto);
-  renderFinal(base, desconto, totalItens);
-  enviarPontuacaoTotal();
-}
-
-function renderFinal(base, desconto, totalItens){
-  const erros=build.wrongAttempts;
-  const elogio = erros===0
-    ? 'Perfeito! Você montou os 6 domínios sem nenhum erro. 🌟'
-    : (erros<=5 ? 'Muito bom! Você entendeu como os fatores se combinam.' : 'Domínios completos! Releia o tutorial para fixar cada combinação.');
-  document.getElementById('bdWrapOuter').innerHTML=`
-    <div class="bd-report">
-      <h3>🏆 Todos os domínios montados!</h3>
-      <p>${elogio}<br>Você preencheu <strong>${totalItens}</strong> categorias corretamente, com <strong>${erros}</strong> ${erros===1?'tentativa errada':'tentativas erradas'}.</p>
-      <div class="bd-legend" style="max-width:340px;margin:1rem auto">
-        <div class="score-line"><div>Acertos (${totalItens} × ${PTS_POR_ITEM} pts)</div><div class="sv">${base} pts</div></div>
-        <div class="score-line"><div>Descontos (${erros} × ${PTS_POR_ERRO} pts)</div><div class="sv">− ${desconto} pts</div></div>
-        <div class="score-line total"><div><strong>Total da Prática</strong></div><div class="sv">${practiceScore} pts</div></div>
-      </div>
-      <button class="btn btn-p" onclick="restartPractice()">🔁 Jogar novamente</button>
-    </div>`;
-}
-
-function restartPractice(){
+/* o aluno fecha a caixa — nada avança sozinho */
+function avancarRodada(){
+  if(!mp||mp.finalizado||!mp.revelar) return;
   sfxClick();
-  resetBuild();
+  const fase=mp.fase;
+  mp.revelar=null;
+  if(fase===1){
+    if(mp.cur1>=DOMINIOS.length-1){ concluirFase(1); }
+    else { mp.cur1++; mp.sel={clima:null,relevo:null,veg:null,solo:null}; renderPratica(); }
+  }else{
+    if(mp.cur2>=DOMINIOS.length-1){ concluirFase(2); }
+    else { mp.cur2++; carregarReparo(); renderPratica(); }
+  }
+  farmeLiberar();
+}
+function concluirFase(n){
+  if(n===1){ mp.f1feita=true; mp.ptsF1=mp.camadasOk*PTS_CAMADA; }
+  else { mp.f2feita=true; mp.ptsF2=mp.acertos2*PTS_REPARO; }
+  if(mp.f1feita&&mp.f2feita){ finalizarPratica(); }
+  else { sfxWin(); mp.fase=0; renderPratica(); }
+}
+function finalizarPratica(){ mp.finalizado=true; mp.fase=0; sfxWin(); renderPratica(); enviarPontuacaoTotal(); }
+function reiniciarPratica(){ sfxClick(); resetPaisagem(); }
+
+/* ── render ──────────────────────────────────────────────────── */
+const MAXF1=DOMINIOS.length*CAMADAS.length*PTS_CAMADA, MAXF2=DOMINIOS.length*PTS_REPARO;
+
+function renderPratica(){
+  const w=document.getElementById('mpWrapOuter');
+  if(!w||!mp) return;
+
+  if(mp.finalizado){
+    w.innerHTML=`<div class="mp-rel">
+      <div style="font-size:40px;line-height:1">🏞️</div>
+      <h3 style="margin:.4rem 0">Máquina desligada</h3>
+      <div class="mp-rel-n">${practiceScore}<span style="font-size:20px;color:var(--txt3)">/${MAXF1+MAXF2}</span></div>
+      <p style="margin-top:.6rem">Montagem: ${mp.camadasOk}/${DOMINIOS.length*4} camadas certas (${mp.ptsF1} pts)<br>
+      Oficina de Reparos: ${mp.acertos2}/${DOMINIOS.length} consertos (${mp.ptsF2} pts)</p>
+      <button class="btn" style="margin-top:1.2rem" onclick="reiniciarPratica()">↻ Ligar de novo</button>
+    </div>`;
+    return;
+  }
+
+  if(mp.fase===0){
+    w.innerHTML=`
+      <div class="fs-aviso">Duas fases independentes — <b>você escolhe por onde começar</b>. O relatório final aparece quando as duas estiverem prontas.</div>
+      <div class="fs-menu">
+        <button class="fs-card" onclick="iniciarFase(1)" ${mp.f1feita?'disabled':''}>
+          ${mp.f1feita?'<span class="fs-selo">CONCLUÍDA</span>':''}
+          <span class="fs-card-e">🧩</span>
+          <span class="fs-card-n">Montagem</span>
+          <span class="fs-card-d">Leia o caderno de campo do expedicionário e monte a paisagem escolhendo as quatro camadas. O desenho se forma na tela da máquina.</span>
+          <span class="fs-card-f">${mp.f1feita?`✓ ${mp.ptsF1} de ${MAXF1} pontos`:`${DOMINIOS.length} paisagens · ${MAXF1} pontos`}</span>
+        </button>
+        <button class="fs-card" onclick="iniciarFase(2)" ${mp.f2feita?'disabled':''}>
+          ${mp.f2feita?'<span class="fs-selo">CONCLUÍDA</span>':''}
+          <span class="fs-card-e">🔧</span>
+          <span class="fs-card-n">Oficina de Reparos</span>
+          <span class="fs-card-d">A máquina montou paisagens com uma camada intrusa. Descubra qual não pertence àquele domínio e troque pela certa.</span>
+          <span class="fs-card-f">${mp.f2feita?`✓ ${mp.ptsF2} de ${MAXF2} pontos`:`${DOMINIOS.length} reparos · ${MAXF2} pontos`}</span>
+        </button>
+      </div>`;
+    return;
+  }
+
+  const f1=mp.fase===1;
+  const d=f1?DOMINIOS[mp.ordem1[mp.cur1]]:DOMINIOS[mp.ordem2[mp.cur2]];
+  const cur=f1?mp.cur1:mp.cur2;
+  const rev=mp.revelar;
+  const prontas=CAMADAS.filter(c=>!!mp.sel[c.id]).length;
+
+  const ask = f1
+    ? `<span class="mp-ask-l">▸ MONTE A PAISAGEM DO CADERNO DE CAMPO</span><span class="mp-ask-q">${d.desc}</span>`
+    : `<span class="mp-ask-l">▸ ACHE E TROQUE A CAMADA INTRUSA</span><span class="mp-ask-q">Esta paisagem deveria ser do <b>${d.nome}</b>, mas a máquina trocou <b>uma</b> das quatro camadas. Descubra qual não pertence e escolha a certa no lugar.</span>`;
+
+  w.innerHTML=`
+    <div class="mp-hud">
+      <div class="mp-chip">${f1?'🧩 Montagem':'🔧 Reparos'} <b>${cur+1}</b>/${DOMINIOS.length}</div>
+      <div class="mp-chip">${f1?'Camadas certas':'Consertos'} <b>${f1?mp.camadasOk:mp.acertos2}</b></div>
+      <div class="mp-chip">Pontos <b>${practiceScore}</b></div>
+    </div>
+
+    <div class="mp-ask">${ask}</div>
+
+    <div class="mp-tela">
+      ${cenaSvg(mp.sel)}
+      <div class="mp-veredito">${f1?`CAMADAS MONTADAS: ${prontas} DE 4`:'PAISAGEM CARREGADA — 1 CAMADA INTRUSA'}</div>
+    </div>
+
+    ${CAMADAS.map(c=>{
+      const sel=mp.sel[c.id];
+      return `<div class="mp-camada">
+        <div class="mp-cam-h">
+          <span class="mp-cam-t">${c.ico} ${c.rot}</span>
+          <span class="mp-cam-v">${sel?rotuloDe(c.id,sel):'— escolha —'}</span>
+        </div>
+        <div class="mp-opts">
+          ${OPCOES[c.id].map(o=>{
+            let cls='mp-opt';
+            if(rev){ if(o.id===d[c.id]) cls+=' certa'; else if(o.id===sel) cls+=' errada'; }
+            else if(o.id===sel) cls+=' sel';
+            return `<button class="${cls}" onclick="escolherCamada('${c.id}','${o.id}')" ${rev?'disabled':''}
+              aria-pressed="${o.id===sel}" title="${o.lbl}">${miniSvg(c.id,o.id)}<span>${o.lbl}</span></button>`;
+          }).join('')}
+        </div>
+      </div>`;
+    }).join('')}
+
+    ${rev?'':`<button class="mp-conf" onclick="${f1?'confirmarMontagem()':'confirmarReparo()'}" ${(f1&&!montagemCompleta())?'disabled':''}>
+      ${f1?(montagemCompleta()?'⚙️ Rodar a máquina':`⚙️ Faltam ${4-prontas} camada(s)`):'🔧 Confirmar reparo'}</button>`}
+
+    ${rev?caixaFeedback(rev):''}
+
+    ${rev?'':`<div style="text-align:center;margin-top:.7rem"><button class="btn" onclick="voltarAoMenu()">← Voltar ao menu de fases</button></div>`}`;
 }
 
-/* ═══════════════════════ PONTUAÇÃO COMBINADA → FARME ═══════════════════════ */
+function caixaFeedback(rev){
+  if(rev.tipo==='montagem'){
+    const ok=rev.nOk===4;
+    return `<div class="mp-fb ${ok?'ok':'err'}">
+      <div class="mp-fb-t">${ok?'✅ Paisagem montada corretamente!':`⚠️ ${rev.nOk} de 4 camadas certas`}</div>
+      <div class="mp-fb-l">O caderno descrevia o <b>${rev.dom.nome}</b>. Veja camada por camada:</div>
+      ${rev.detalhe.map(x=>`<div class="mp-linha"><i>${x.ok?'✅':'❌'}</i><span>${x.ico} <b>${rotuloDe(x.cam,x.certo)}</b>${x.ok?'':` — você montou "${rotuloDe(x.cam,x.posto)}"`}</span></div>`).join('')}
+      <div class="mp-fb-l" style="margin-top:.7rem">${rev.dom.porque}</div>
+      <button class="mp-fb-btn" onclick="avancarRodada()">${mp.cur1>=DOMINIOS.length-1?'Concluir a Montagem →':'Entendi, próxima paisagem →'}</button>
+    </div>`;
+  }
+  const it=rev.intrusa, cam=CAMADAS.filter(c=>c.id===it.cam)[0];
+  return `<div class="mp-fb ${rev.ok?'ok':'err'}">
+    <div class="mp-fb-t">${rev.ok?'✅ Reparo correto!':'❌ A paisagem ainda não fecha'}</div>
+    <div class="mp-fb-l">A intrusa estava na camada <b>${cam.ico} ${cam.rot}</b>: a máquina tinha posto <b>${rotuloDe(it.cam,it.valor)}</b>, quando o ${rev.dom.nome} pede <b>${rotuloDe(it.cam,rev.dom[it.cam])}</b>.</div>
+    ${rev.ok?'':`<div class="mp-fb-l">Camadas ainda fora do lugar: ${rev.erradas.map(e=>`<b>${CAMADAS.filter(c=>c.id===e)[0].rot.toLowerCase()}</b>`).join(', ')}.</div>`}
+    <div class="mp-fb-l">${rev.dom.porque}</div>
+    <button class="mp-fb-btn" onclick="avancarRodada()">${mp.cur2>=DOMINIOS.length-1?'Concluir a Oficina →':'Entendi, próximo reparo →'}</button>
+  </div>`;
+}
+
 function enviarPontuacaoTotal(){
   const total=(quizScore*100)+practiceScore;
-  if(window.enviarScoreFarme){
-    window.enviarScoreFarme(total, {
-      corrects: quizScore,
-      totals: QRAW.length
-    });
-  }
+  if(window.enviarScoreFarme){ window.enviarScoreFarme(total,{corrects:quizScore,totals:QRAW.length}); }
 }
-
 renderQ();
-resetBuild();
+resetPaisagem();
 </script>
 
 <script>
 /* ===== KIT FARME AURA — Integração com iframe ===== */
 (function(){
   const dentroDoFarme = window.parent && window.parent !== window;
-
   window.enviarScoreFarme = function(pontos, extra){
     extra = extra || {};
-    const payload = {
-      tipo: 'FARME_ATIVIDADE_SCORE',
-      pontos: Math.max(0, Math.round(pontos || 0)),
-      corrects: extra.corrects || null,
-      totals: extra.totals || null,
-      atividade: document.title || 'Atividade',
-      timestamp: Date.now()
-    };
-    if(dentroDoFarme){
-      window.parent.postMessage(payload, '*');
-    }
+    const payload = { tipo:'FARME_ATIVIDADE_SCORE', pontos:Math.max(0,Math.round(pontos||0)),
+      corrects:extra.corrects||null, totals:extra.totals||null,
+      atividade:document.title||'Atividade', timestamp:Date.now() };
+    if(dentroDoFarme){ window.parent.postMessage(payload,'*'); }
   };
-
-  if(dentroDoFarme){
-    window.parent.postMessage({ tipo: 'FARME_ATIVIDADE_PRONTA', atividade: document.title }, '*');
-  }
+  if(dentroDoFarme){ window.parent.postMessage({tipo:'FARME_ATIVIDADE_PRONTA',atividade:document.title},'*'); }
 })();
 /* ===== FIM DO KIT FARME ===== */
 </script>
